@@ -1,0 +1,35 @@
+:root {
+  --clr-black-pearl: hsl(191, 33%, 10%);
+  --clr-pickled-bluewood: hsl(191, 33%, 23%);
+  --clr-sunrise-orange: hsl(8, 75%, 65%);
+  --clr-summer-green: hsl(175, 25%, 63%);
+  --clr-ice: hsl(182, 82%, 93%);
+  --clr-charcoal-gray: hsl(180, 4%, 5%);
+  --clr-honey-dew: hsl(158, 100%, 96%);
+  --clr-white-smoke: hsl(0, 0%, 96%);
+  --clr-onyx: hsl(0, 0%, 24%);
+
+
+  --clr-success-msg: hsl(110, 90%, 50%);
+  --clr-warning-msg: hsl(0, 90%, 40%);
+
+  --clr-inactive: var(--clr-davy-grey);
+  --clr-pending: var(--clr-citron);
+  --clr-active: var(--clr-dark-mint);
+  --clr-overdue: var(--clr-lava-red);
+  --clr-paid: hsl(0, 90%, 40%);
+
+  --clr-neutral-100: hsl(0, 0%, 5%);
+  --clr-neutral-200: hsl(0, 0%, 20%);
+  --clr-neutral-300: hsl(0, 0%, 35%);
+  --clr-neutral-400: hsl(0, 0%, 50%);
+  --clr-neutral-500: hsl(0, 0%, 65%);
+  --clr-neutral-600: hsl(0, 0%, 80%);
+  --clr-neutral-700: hsl(0, 0%, 95%);
+
+  --max-width-xsm: 400px;
+  --max-width-sm: 576px;
+  --max-width-md: 768px;
+  --max-width-lg: 922px;
+  --max-width-xl: 1200px;
+}
