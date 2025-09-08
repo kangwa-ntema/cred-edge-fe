@@ -1,0 +1,282 @@
+/* Styles for the Platform Tenant Management Page */
+/* Using the provided CSS variables for a consistent look */
+:root {
+  --clr-black-pearl: hsl(191, 33%, 10%);
+  --clr-pickled-bluewood: hsl(191, 33%, 23%);
+  --clr-sunrise-orange: hsl(8, 75%, 65%);
+  --clr-summer-green: hsl(175, 25%, 63%);
+  --clr-ice: hsl(182, 82%, 93%);
+  --clr-charcoal-gray: hsl(180, 4%, 5%);
+  --clr-honey-dew: hsl(158, 100%, 96%);
+  --clr-white-smoke: hsl(0, 0%, 96%);
+  --clr-onyx: hsl(0, 0%, 24%);
+
+  --clr-success-msg: hsl(110, 90%, 50%);
+  --clr-warning-msg: hsl(0, 90%, 40%);
+
+  --clr-neutral-100: hsl(0, 0%, 5%);
+  --clr-neutral-200: hsl(0, 0%, 20%);
+  --clr-neutral-300: hsl(0, 0%, 35%);
+  --clr-neutral-400: hsl(0, 0%, 50%);
+  --clr-neutral-500: hsl(0, 0%, 65%);
+  --clr-neutral-600: hsl(0, 0%, 80%);
+  --clr-neutral-700: hsl(0, 0%, 95%);
+}
+
+.platformTenantManagementContainer {
+  padding: 2rem;
+  font-family: 'Inter', sans-serif;
+  color: var(--clr-neutral-200);
+  background-color: var(--clr-white-smoke);
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 1rem;
+
+  h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--clr-pickled-bluewood);
+  }
+}
+
+.subtitle {
+  text-align: center;
+  color: var(--clr-neutral-400);
+  margin-bottom: 2rem;
+  font-size: 1rem;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.actionButtons {
+  display: flex;
+  justify-content: center;
+
+  .createButton {
+    background-color: var(--clr-pickled-bluewood);
+    color: var(--clr-ice);
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 9999px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 4px 6px hsla(0, 0%, 0%, 0.1);
+
+    &:hover {
+      background-color: var(--clr-black-pearl);
+      transform: translateY(-2px);
+    }
+  }
+}
+
+.tenantList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  max-height: 60vh;
+  overflow-y: auto;
+  padding-right: 1rem;
+}
+
+.tenantCard {
+  background-color: var(--clr-ice);
+  border: 1px solid var(--clr-neutral-600);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 4px hsla(0, 0%, 0%, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: box-shadow 0.3s;
+
+  &:hover {
+    box-shadow: 0 4px 8px hsla(0, 0%, 0%, 0.1);
+  }
+
+  h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--clr-pickled-bluewood);
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    font-size: 0.9rem;
+    color: var(--clr-neutral-300);
+  }
+
+  .status-active {
+    color: var(--clr-summer-green);
+    font-weight: bold;
+  }
+
+  .status-suspended {
+    color: var(--clr-sunrise-orange);
+    font-weight: bold;
+  }
+
+  .cardActions {
+    margin-top: 1rem;
+    display: flex;
+    gap: 0.75rem;
+
+    .actionButton {
+      padding: 0.5rem 1rem;
+      border-radius: 9999px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      border: none;
+
+      &.edit {
+        background-color: var(--clr-pickled-bluewood);
+        color: var(--clr-ice);
+        &:hover {
+          background-color: var(--clr-black-pearl);
+        }
+      }
+
+      &.delete {
+        background-color: var(--clr-sunrise-orange);
+        color: var(--clr-ice);
+        &:hover {
+          background-color: var(--clr-warning-msg);
+        }
+      }
+    }
+  }
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-container {
+  background-color: var(--clr-white-smoke);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px hsla(0, 0%, 0%, 0.2);
+  width: 90%;
+  max-width: 600px;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--clr-neutral-600);
+  padding-bottom: 1rem;
+}
+
+.modal-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--clr-pickled-bluewood);
+}
+
+.modal-close-btn {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: var(--clr-neutral-500);
+  cursor: pointer;
+  transition: color 0.2s;
+
+  &:hover {
+    color: var(--clr-neutral-200);
+  }
+}
+
+.modal-body {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding-right: 1rem;
+}
+
+form {
+  h4 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--clr-neutral-200);
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    &:first-of-type {
+      margin-top: 0;
+    }
+  }
+}
+
+.form-group {
+  margin-bottom: 1rem;
+
+  label {
+    display: block;
+    font-weight: 500;
+    color: var(--clr-neutral-300);
+    margin-bottom: 0.5rem;
+  }
+
+  input,
+  select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--clr-neutral-500);
+    background-color: var(--clr-ice);
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+
+    &:focus {
+      outline: none;
+      border-color: var(--clr-pickled-bluewood);
+      box-shadow: 0 0 0 2px hsla(191, 33%, 23%, 0.2);
+    }
+  }
+}
+
+.submitButton {
+  background-color: var(--clr-summer-green);
+  color: var(--clr-onyx);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  margin-top: 1.5rem;
+  width: 100%;
+  box-shadow: 0 4px 6px hsla(0, 0%, 0%, 0.1);
+
+  &:disabled {
+    background-color: var(--clr-neutral-500);
+    cursor: not-allowed;
+  }
+
+  &:hover:not(:disabled) {
+    background-color: var(--clr-honey-dew);
+    transform: translateY(-2px);
+  }
+}

@@ -16,6 +16,9 @@ import SettingsPage from './components/common/SettingsPage';
 // NEW: Import the PackagesPage component
 import PackageManagement from './components/PlatformAdminDashboard/PackageManagement/PackageManagement';
 
+// NEW: Import the new Tenant Management component
+import PlatformTenantManagement from './components/PlatformAdminDashboard/TenantManagement/PlatformTenantManagement';
+
 // The single, centralized route guard and redirection handler
 const ProtectedRoute = ({ children, roles }: { children: JSX.Element, roles: string[] }) => {
   const { user, loading } = useAuth();
@@ -115,6 +118,16 @@ const App: React.FC = () => {
             element={
               <ProtectedRoute roles={['platform_superadmin', 'platform_admin']}>
                 <PackageManagement />
+              </ProtectedRoute>
+            } 
+          />
+
+          {/* NEW: Protected route for Tenant Management */}
+          <Route 
+            path="/platform/tenant-management" 
+            element={
+              <ProtectedRoute roles={['platform_superadmin']}>
+                <PlatformTenantManagement />
               </ProtectedRoute>
             } 
           />
