@@ -1,7 +1,7 @@
 import React from 'react';
 import { useAuth } from '../context/authContext';
-import PlatformAdminDashboard from './PlatformAdminDashboard';
-import TenantDashboard from './TenantDashboard';
+import PlatformAdminDashboard from './PlatformAdminDashboard/PlatformAdminDashboard';
+import TenantDashboard from './TenantDashboard/TenantDashboard';
 
 const Dashboard = () => {
   const { user, logout } = useAuth();

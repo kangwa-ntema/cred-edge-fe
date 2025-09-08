@@ -1,0 +1,301 @@
+/* Styles for the Settings Page component */
+/* Using the provided CSS variables for a consistent look */
+:root {
+  --clr-black-pearl: hsl(191, 33%, 10%);
+  --clr-pickled-bluewood: hsl(191, 33%, 23%);
+  --clr-sunrise-orange: hsl(8, 75%, 65%);
+  --clr-summer-green: hsl(175, 25%, 63%);
+  --clr-ice: hsl(182, 82%, 93%);
+  --clr-charcoal-gray: hsl(180, 4%, 5%);
+  --clr-honey-dew: hsl(158, 100%, 96%);
+  --clr-white-smoke: hsl(0, 0%, 96%);
+  --clr-onyx: hsl(0, 0%, 24%);
+
+
+  --clr-success-msg: hsl(110, 90%, 50%);
+  --clr-warning-msg: hsl(0, 90%, 40%);
+
+
+  --clr-neutral-100: hsl(0, 0%, 5%);
+  --clr-neutral-200: hsl(0, 0%, 20%);
+  --clr-neutral-300: hsl(0, 0%, 35%);
+  --clr-neutral-400: hsl(0, 0%, 50%);
+  --clr-neutral-500: hsl(0, 0%, 65%);
+  --clr-neutral-600: hsl(0, 0%, 80%);
+  --clr-neutral-700: hsl(0, 0%, 95%);
+
+  --max-width-xsm: 400px;
+  --max-width-sm: 576px;
+  --max-width-md: 768px;
+  --max-width-lg: 922px;
+  --max-width-xl: 1200px;
+
+
+
+
+  --clr-inactive: var(--clr-davy-grey);
+  --clr-pending: var(--clr-citron);
+  --clr-active: var(--clr-dark-mint);
+  --clr-overdue: var(--clr-lava-red);
+  --clr-paid: hsl(0, 90%, 40%);
+}
+
+
+/* Styles for the Settings Page component */
+/* Using the provided CSS variables for a consistent look */
+
+
+.settingsPageContainer {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 2rem;
+  background-color: var(--clr-ice);
+  font-family: 'Inter', sans-serif;
+  color: var(--clr-onyx);
+
+  @media (max-width: var(--max-width-sm)) {
+    padding: 1rem;
+  }
+}
+
+.settingsPageHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  width: 100%;
+  max-width: var(--max-width-md);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.settingsPageTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--clr-pickled-bluewood);
+
+  @media (max-width: var(--max-width-sm)) {
+    font-size: 1.75rem;
+  }
+}
+
+.settingsPageSubtitle {
+  font-size: 1rem;
+  color: var(--clr-neutral-200);
+  margin: 0;
+  margin-bottom: 2rem;
+  text-align: center;
+  max-width: var(--max-width-md);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.logoutButton {
+  background-color: var(--clr-sunrise-orange);
+  color: var(--clr-white-smoke);
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  
+  &:hover {
+    background-color: var(--clr-warning-msg);
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  }
+}
+
+.settingsCardGrid {
+  display: grid;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: var(--max-width-md);
+  margin-left: auto;
+  margin-right: auto;
+  
+  @media (min-width: var(--max-width-sm)) {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+}
+
+.settingsCard {
+  background-color: var(--clr-white-smoke);
+  border-radius: 1.5rem;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.cardTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--clr-pickled-bluewood);
+  border-bottom: 2px solid var(--clr-ice);
+  padding-bottom: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.cardDescription {
+  font-size: 1rem;
+  color: var(--clr-onyx);
+  margin: 0;
+  flex-grow: 1; /* Pushes the button to the bottom */
+}
+
+.cardButton {
+  background-color: var(--clr-summer-green);
+  color: var(--clr-white-smoke);
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  align-self: flex-start; /* Aligns the button to the left */
+
+  &:hover {
+    background-color: var(--clr-honey-dew);
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  }
+}
+
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-container {
+  background-color: var(--clr-white-smoke);
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  max-width: 90%;
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  position: relative;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.modal-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--clr-pickled-bluewood);
+  margin: 0;
+}
+
+.modal-close-btn {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: var(--clr-neutral-400);
+  line-height: 1;
+  
+  &:hover {
+    color: var(--clr-pickled-bluewood);
+  }
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Form Styles */
+.form-group {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 500;
+  color: var(--clr-onyx);
+  margin-bottom: 0.5rem;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid var(--clr-neutral-500);
+  background-color: var(--clr-honey-dew);
+  color: var(--clr-black-pearl);
+  
+  &:focus {
+    outline: 2px solid var(--clr-summer-green);
+    border-color: transparent;
+  }
+}
+
+.form-grid {
+  display: grid;
+  gap: 1rem;
+
+  @media (min-width: 480px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.submitButton {
+  background-color: var(--clr-summer-green);
+  color: var(--clr-white-smoke);
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  align-self: flex-end; /* Aligns the button to the right */
+  margin-top: 1rem;
+  
+  &:hover {
+    background-color: var(--clr-honey-dew);
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  }
+}
+
+.messageBox {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  text-align: center;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  max-width: var(--max-width-md);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.messageBox.success {
+  background-color: var(--clr-success-msg);
+  color: var(--clr-white-smoke);
+}
+
+.messageBox.warning {
+  background-color: var(--clr-warning-msg);
+  color: var(--clr-white-smoke);
+}

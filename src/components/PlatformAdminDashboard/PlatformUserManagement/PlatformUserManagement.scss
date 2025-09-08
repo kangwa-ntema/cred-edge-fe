@@ -1,0 +1,235 @@
+.userManagementContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 2rem;
+  background-color: var(--clr-ice);
+  min-height: 100vh;
+  font-family: 'Inter', sans-serif;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.pageTitle {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--clr-pickled-bluewood);
+  margin: 0;
+}
+
+.backButton {
+  padding: 0.75rem 1.5rem;
+  background-color: var(--clr-onyx);
+  color: var(--clr-white-smoke);
+  border-radius: 9999px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+  
+  &:hover {
+    background-color: var(--clr-neutral-200);
+  }
+}
+
+.pageSubtitle {
+  font-size: 1rem;
+  color: var(--clr-neutral-400);
+  margin: 0;
+}
+
+.contentCard {
+  background-color: var(--clr-white-smoke);
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 4px 20px rgba(var(--clr-neutral-100), 0.1);
+}
+
+.contentHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.sectionTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--clr-pickled-bluewood);
+  margin: 0;
+}
+
+.createButton {
+  padding: 0.75rem 1.5rem;
+  background-color: var(--clr-summer-green);
+  color: var(--clr-black-pearl);
+  border: none;
+  border-radius: 9999px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: var(--clr-honey-dew);
+  }
+}
+
+.userForm {
+  margin-bottom: 2rem;
+  background-color: var(--clr-neutral-700);
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.formInput {
+  padding: 0.75rem;
+  border: 1px solid var(--clr-neutral-500);
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  color: var(--clr-neutral-100);
+  background-color: var(--clr-white-smoke);
+  transition: border-color 0.3s ease;
+
+  &:focus {
+    outline: none;
+    border-color: var(--clr-summer-green);
+  }
+}
+
+.formActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.submitButton {
+  padding: 0.75rem 2rem;
+  background-color: var(--clr-pickled-bluewood);
+  color: var(--clr-white-smoke);
+  border: none;
+  border-radius: 9999px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: var(--clr-neutral-300);
+  }
+}
+
+.errorMessage {
+  color: var(--clr-warning-msg);
+  font-size: 0.9rem;
+  text-align: right;
+  margin-top: 0.5rem;
+}
+
+.loadingSpinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.userTableContainer {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.userTable {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 0.5rem;
+}
+
+.tableHeader {
+  background-color: var(--clr-neutral-700);
+}
+
+.tableHeaderCell {
+  padding: 1rem;
+  text-align: left;
+  font-weight: 600;
+  color: var(--clr-neutral-200);
+  text-transform: uppercase;
+
+  &:first-child {
+    border-top-left-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+  }
+  &:last-child {
+    border-top-right-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+  }
+}
+
+.tableBody tr {
+  background-color: var(--clr-white-smoke);
+  box-shadow: 0 2px 10px rgba(var(--clr-neutral-100), 0.05);
+  border-radius: 0.75rem;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(var(--clr-neutral-100), 0.1);
+  }
+}
+
+.tableCellPrimary {
+  padding: 1rem;
+  font-weight: 500;
+  color: var(--clr-pickled-bluewood);
+}
+
+.tableCellSecondary {
+  padding: 1rem;
+  color: var(--clr-neutral-200);
+}
+
+.tableActions {
+  display: flex;
+  gap: 0.5rem;
+  padding: 1rem;
+}
+
+.editButton,
+.deleteButton {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 9999px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.editButton {
+  background-color: var(--clr-summer-green);
+  color: var(--clr-black-pearl);
+  
+  &:hover {
+    background-color: var(--clr-honey-dew);
+  }
+}
+
+.deleteButton {
+  background-color: var(--clr-sunrise-orange);
+  color: var(--clr-black-pearl);
+
+  &:hover {
+    background-color: hsl(8, 75%, 75%);
+  }
+}

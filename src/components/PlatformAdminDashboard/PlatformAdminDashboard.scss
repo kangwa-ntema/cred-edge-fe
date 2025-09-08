@@ -1,0 +1,106 @@
+/* Styles for the Platform Admin Dashboard component */
+/* Using the provided CSS variables for a consistent look */
+
+.dashboardContainer {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 2rem;
+  background-color: var(--clr-ice);
+  font-family: 'Inter', sans-serif;
+  color: var(--clr-onyx);
+
+  @media (max-width: var(--max-width-sm)) {
+    padding: 1rem;
+  }
+}
+
+.dashboardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+.dashboardTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--clr-pickled-bluewood);
+
+  @media (max-width: var(--max-width-sm)) {
+    font-size: 1.75rem;
+  }
+}
+
+.logoutButton {
+  background-color: var(--clr-sunrise-orange);
+  color: var(--clr-white-smoke);
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  
+  &:hover {
+    background-color: var(--clr-warning-msg);
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  }
+}
+
+.dashboardSubtitle {
+  font-size: 1rem;
+  color: var(--clr-neutral-200);
+  margin: 0;
+  margin-bottom: 2rem;
+}
+
+.usernameHighlight {
+  color: var(--clr-pickled-bluewood);
+  font-weight: 600;
+}
+
+.dashboardCardGrid {
+  display: grid;
+  gap: 1.5rem;
+  width: 100%;
+  
+  @media (min-width: var(--max-width-sm)) {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+}
+
+.cardLink {
+  text-decoration: none;
+  color: inherit;
+}
+
+.dashboardCard {
+  background-color: var(--clr-white-smoke);
+  border-radius: 1.5rem;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease;
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  }
+}
+
+.cardTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--clr-pickled-bluewood);
+  margin: 0;
+}
+
+.cardDescription {
+  font-size: 1rem;
+  color: var(--clr-onyx);
+  margin: 0;
+}

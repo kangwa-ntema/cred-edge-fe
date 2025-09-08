@@ -1,5 +1,7 @@
+// fe/src/components/TenantDashboard/TenantDashboard.tsx
+
 import React from 'react';
-import { useAuth } from '../context/authContext';
+import { useAuth } from '../../context/authContext';
 
 const TenantDashboard = () => {
   const { user, logout } = useAuth();
