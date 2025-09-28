@@ -1,0 +1,60 @@
+// fe/src/components/TenantDashboard/LoanManagement/LoanProductsManagement/wizard-steps/WizardStepsItems.scss
+
+@import '../../../../../styles/variables';
+
+// Item components (fees, documents, holidays)
+.fee-item,
+.document-item,
+.holiday-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: var(--clr-white-smoke);
+  border-radius: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.fee-content,
+.document-content,
+.holiday-content {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex: 1;
+}
+
+.fee-icon {
+  font-size: 1.25rem;
+}
+
+.fee-details,
+.document-details,
+.holiday-content {
+  h5 {
+    font-weight: 600;
+    color: var(--clr-black-pearl);
+    margin-bottom: 0.25rem;
+  }
+
+  p {
+    color: var(--clr-neutral-400);
+    font-size: 0.875rem;
+  }
+}
+
+.fee-actions,
+.document-actions,
+.holiday-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.mandatory-badge {
+  background: var(--clr-sunrise-orange);
+  color: white;
+  padding: 0.125rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+}

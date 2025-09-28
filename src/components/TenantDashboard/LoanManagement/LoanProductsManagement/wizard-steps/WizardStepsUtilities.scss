@@ -1,0 +1,35 @@
+// fe/src/components/TenantDashboard/LoanManagement/LoanProductsManagement/wizard-steps/WizardStepsUtilities.scss
+@import '../../../../../styles/variables';
+
+// Utility classes and states
+.config-preview {
+  margin-top: 2rem;
+
+  h4 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--clr-black-pearl);
+  }
+}
+
+.empty-state {
+  text-align: center;
+  padding: 2rem;
+  background: var(--clr-white-smoke);
+  border: 2px dashed var(--clr-neutral-600);
+  border-radius: 0.75rem;
+  color: var(--clr-neutral-400);
+}
+
+// Common holidays section
+.common-holidays {
+  margin-top: 1.5rem;
+
+  h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: var(--clr-black-pearl);
+  }
+}

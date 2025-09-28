@@ -1,0 +1,145 @@
+// fe/src/styles/variables.scss
+
+// ==========================================================================
+// SASS VARIABLES (For media queries, calculations, etc.)
+// ==========================================================================
+
+// Breakpoint variables for Sass
+$sm: 576px;
+$md: 768px;
+$lg: 922px;
+$xl: 1200px;
+$xsm: 400px;
+
+// Color variables for Sass calculations
+$clr-black-pearl: hsl(191, 33%, 10%);
+$clr-pickled-bluewood: hsl(191, 33%, 23%);
+$clr-sunrise-orange: hsl(8, 75%, 65%);
+$clr-summer-green: hsl(175, 25%, 63%);
+$clr-ice: hsl(182, 82%, 93%);
+$clr-jagged-ice: #b9e8ea;
+$clr-charcoal-gray: hsl(180, 4%, 5%);
+$clr-honey-dew: hsl(158, 100%, 96%);
+$clr-white-smoke: hsl(0, 0%, 96%);
+$clr-onyx: hsl(0, 0%, 24%);
+
+// Neutral colors for Sass
+$clr-neutral-100: hsl(0, 0%, 5%);
+$clr-neutral-200: hsl(0, 0%, 20%);
+$clr-neutral-300: hsl(0, 0%, 35%);
+$clr-neutral-400: hsl(0, 0%, 50%);
+$clr-neutral-500: hsl(0, 0%, 65%);
+$clr-neutral-600: hsl(0, 0%, 80%);
+$clr-neutral-700: hsl(0, 0%, 95%);
+
+// Status colors for Sass
+$clr-success-msg: hsl(110, 90%, 50%);
+$clr-warning-msg: hsl(0, 90%, 40%);
+$clr-pending: #f59e0b;
+$clr-paid: #10b981;
+
+// ==========================================================================
+// CSS CUSTOM PROPERTIES (For dynamic theming and JS access)
+// ==========================================================================
+:root {
+  // Primary Colors
+  --clr-black-pearl: #{$clr-black-pearl};
+  --clr-pickled-bluewood: #{$clr-pickled-bluewood};
+  --clr-sunrise-orange: #{$clr-sunrise-orange};
+  --clr-summer-green: #{$clr-summer-green};
+  --clr-ice: #{$clr-ice};
+  --clr-jagged-ice: #{$clr-jagged-ice};
+  --clr-charcoal-gray: #{$clr-charcoal-gray};
+  --clr-honey-dew: #{$clr-honey-dew};
+  --clr-white-smoke: #{$clr-white-smoke};
+  --clr-onyx: #{$clr-onyx};
+
+  // Status Colors
+  --clr-success-msg: #{$clr-success-msg};
+  --clr-warning-msg: #{$clr-warning-msg};
+
+  // Neutral Colors
+  --clr-neutral-100: #{$clr-neutral-100};
+  --clr-neutral-200: #{$clr-neutral-200};
+  --clr-neutral-300: #{$clr-neutral-300};
+  --clr-neutral-400: #{$clr-neutral-400};
+  --clr-neutral-500: #{$clr-neutral-500};
+  --clr-neutral-600: #{$clr-neutral-600};
+  --clr-neutral-700: #{$clr-neutral-700};
+
+  // Layout
+  --max-width-xsm: #{$xsm};
+  --max-width-sm: #{$sm};
+  --max-width-md: #{$md};
+  --max-width-lg: #{$lg};
+  --max-width-xl: #{$xl};
+
+  // Status Variants
+  --clr-inactive: var(--clr-neutral-400);
+  --clr-pending: #{$clr-pending};
+  --clr-active: var(--clr-summer-green);
+  --clr-overdue: var(--clr-sunrise-orange);
+  --clr-paid: #{$clr-paid};
+}
+
+// ==========================================================================
+// SASS MIXINS (Optional but helpful)
+// ==========================================================================
+
+// Media query mixins
+@mixin sm {
+  @media (min-width: #{$sm}) {
+    @content;
+  }
+}
+
+@mixin md {
+  @media (min-width: #{$md}) {
+    @content;
+  }
+}
+
+@mixin lg {
+  @media (min-width: #{$lg}) {
+    @content;
+  }
+}
+
+@mixin xl {
+  @media (min-width: #{$xl}) {
+    @content;
+  }
+}
+
+@mixin xsm {
+  @media (min-width: #{$xsm}) {
+    @content;
+  }
+}
+
+// Utility mixins
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin card-shadow {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  
+  &:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+}
+
+@mixin text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

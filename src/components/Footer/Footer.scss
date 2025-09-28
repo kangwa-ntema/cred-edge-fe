@@ -1,0 +1,176 @@
+// fe/src/components/Footer/Footer.scss
+
+// Use the same color variables as Navbar for consistency
+$clr-dark-green: hsl(191, 33%, 10%);
+$clr-kelly-green: #27474e;
+$clr-asparagus: hsl(8, 75%, 65%);
+$clr-avocado: #8ab9b5;
+$clr-dark-moss-green: #8ab9b5;
+$clr-hunter-green: #e0fbfc;
+$clr-charcoal-gray: hsl(180, 4%, 5%);
+$clr-honey-dew: hsl(158, 100%, 96%);
+$clr-white-smoke: hsl(0, 0%, 96%);
+$clr-onyx: hsl(0, 0%, 24%);
+
+$primary-color: $clr-kelly-green;
+$secondary-color: $clr-dark-moss-green;
+$text-light: $clr-white-smoke;
+$text-dark: $clr-onyx;
+$bg-dark: $clr-dark-green;
+
+$font-family-inter: 'Inter', sans-serif;
+
+.footerContainer {
+    background-color: $bg-dark;
+    color: $text-light;
+    padding: 3rem 0 1rem;
+    margin-top: auto; // Push footer to bottom
+}
+
+.footerContent {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+
+    @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding: 0 1rem;
+    }
+}
+
+.footerSection {
+    h3 {
+        color: $clr-avocado;
+        margin-bottom: 1rem;
+        font-size: 1.2rem;
+        font-weight: 600;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+            margin-bottom: 0.5rem;
+
+            a {
+                color: $text-light;
+                text-decoration: none;
+                transition: color 0.3s ease;
+
+                &:hover {
+                    color: $clr-avocado;
+                }
+            }
+        }
+    }
+}
+
+.footerAbout {
+    .footerLogoLink {
+        display: inline-block;
+        margin-bottom: 1rem;
+    }
+
+    .footerLogo {
+        height: 50px;
+        width: auto;
+    }
+
+    .footerDescription {
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+        opacity: 0.9;
+    }
+
+    .socialLinks {
+        display: flex;
+        gap: 1rem;
+
+        @media (max-width: 768px) {
+            justify-content: center;
+        }
+
+        a {
+            color: $text-light;
+            transition: color 0.3s ease, transform 0.2s ease;
+
+            &:hover {
+                color: $clr-avocado;
+                transform: translateY(-2px);
+            }
+        }
+    }
+}
+
+.footerContact {
+    ul li {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+
+        @media (max-width: 768px) {
+            justify-content: center;
+        }
+
+        svg {
+            color: $clr-avocado;
+        }
+    }
+}
+
+.footerBottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 1.5rem;
+    text-align: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.5rem 2rem 0;
+
+    @media (max-width: 768px) {
+        padding: 1.5rem 1rem 0;
+    }
+
+    .appFooterCopyright {
+        margin-bottom: 0.5rem;
+        opacity: 0.8;
+    }
+
+    .sponsor {
+        opacity: 0.7;
+        font-size: 0.9rem;
+
+        .developerLink {
+            color: $clr-avocado;
+            text-decoration: none;
+            font-weight: 600;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}
+
+// Responsive adjustments
+@media (max-width: 480px) {
+    .footerContainer {
+        padding: 2rem 0 1rem;
+    }
+
+    .footerContent {
+        gap: 1.5rem;
+    }
+
+    .footerSection {
+        h3 {
+            font-size: 1.1rem;
+        }
+    }
+}

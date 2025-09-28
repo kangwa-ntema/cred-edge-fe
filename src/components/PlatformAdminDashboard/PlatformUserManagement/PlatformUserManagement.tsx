@@ -1,57 +1,58 @@
-import React, { useEffect, useState } from 'react';
-import { useAuth } from '../../../context/authContext';
-import {
-  getAllPlatformUsers,
-  createPlatformUser,
-  deletePlatformUser,
-  updatePlatformUser,
-} from '../../../services/api/platformApi';
-import { ClipLoader } from 'react-spinners';
-import { Link } from 'react-router-dom';
-import './PlatformUserManagement.scss';
+// fe/src/components/PlatformAdminDashboard/PlatformUserManagement/PlatformUserManagement.tsx
 
-interface User {
-  _id: string;
-  username: string;
-  email: string;
-  role: string;
-}
+import React, { useEffect, useState } from "react";
+import { useAuth } from "../../../context/authContext";
+import {
+  getPlatformUsers,
+  createPlatformUser,
+  updatePlatformUser,
+  deletePlatformUser,
+  type PlatformUser,
+} from "../../../services/api/platform/platformUserApi";
+import { toast } from "react-toastify";
+import { ClipLoader } from "react-spinners";
+import { Link } from "react-router-dom";
+import "./PlatformUserManagement.scss";
 
 const PlatformUserManagement = () => {
   const { user } = useAuth();
-  const [users, setUsers] = useState<User[]>([]);
+  const [users, setUsers] = useState<PlatformUser[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [formData, setFormData] = useState({
-    username: '',
-    email: '',
-    password: '',
-    role: 'platform_employee',
+    username: "",
+    email: "",
+    password: "",
+    firstName: "",
+    lastName: "",
+    phone: "",
+    role: "platform_employee" as const,
   });
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [userToDeleteId, setUserToDeleteId] = useState<string | null>(null);
   const [editingUserId, setEditingUserId] = useState<string | null>(null);
 
-  const fetchUsers = async () => {
+const fetchUsers = async () => {
     setLoading(true);
     setError(null);
     try {
-      if (!user?.token) {
-        throw new Error("User token not found.");
-      }
-      const response = await getAllPlatformUsers(user.token);
-      console.log('API Response:', response);
-      
-      if (Array.isArray(response.data)) {
+      const response = await getPlatformUsers();
+      console.log("Fetched users response:", response);
+
+      if (response.success && response.data) {
         setUsers(response.data);
       } else {
-        setError('Received invalid data from the server. Please check the API.');
+        const errorMsg = response.error || "Failed to fetch platform users.";
+        setError(errorMsg);
         setUsers([]);
+        toast.error(errorMsg);
       }
-    } catch (err) {
-      console.error('Failed to fetch platform users:', err);
-      setError('Failed to fetch platform users.');
+    } catch (err: any) {
+      console.error("Failed to fetch platform users:", err);
+      const errorMessage = err.message || "Failed to fetch platform users.";
+      setError(errorMessage);
+      toast.error(errorMessage);
     } finally {
       setLoading(false);
     }
@@ -68,39 +69,62 @@ const PlatformUserManagement = () => {
   const handleCloseModal = () => {
     setIsModalOpen(false);
     setEditingUserId(null);
-    setFormData({ username: '', email: '', password: '', role: 'platform_employee' });
+    setFormData({
+      username: "",
+      email: "",
+      password: "",
+      firstName: "",
+      lastName: "",
+      phone: "",
+      role: "platform_employee",
+    });
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  // --- REFACTORED: COMBINED CREATE AND UPDATE LOGIC ---
-  const handleSubmit = async (e: React.FormEvent) => {
+const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!user?.token) return;
+    console.log('Form submission started!');
+    console.log("Current user:", user);
+    console.log("Submitting form with data:", formData);
 
     setLoading(true);
     setError(null);
     try {
+      let response;
       if (editingUserId) {
-        // If editingUserId is set, we're updating an existing user
-        await updatePlatformUser(editingUserId, formData, user.token);
+        const updateData = { ...formData };
+        if (!updateData.password) {
+          delete updateData.password;
+        }
+        response = await updatePlatformUser(editingUserId, updateData);
       } else {
-        // Otherwise, we're creating a new user
-        await createPlatformUser(formData, user.token);
+        response = await createPlatformUser(formData);
       }
-      await fetchUsers();
-      handleCloseModal();
-    } catch (err) {
-      console.error(`Failed to ${editingUserId ? 'update' : 'create'} user:`, err);
-      setError(`Failed to ${editingUserId ? 'update' : 'create'} user. Please try again.`);
+
+      if (response.success) {
+        toast.success(response.message || (editingUserId ? "User updated successfully!" : "User created successfully!"));
+        await fetchUsers();
+        handleCloseModal();
+      } else {
+        const errorMessage = response.error || `Failed to ${editingUserId ? "update" : "create"} user.`;
+        setError(errorMessage);
+        toast.error(errorMessage);
+      }
+    } catch (err: any) {
+      console.error(`Failed to ${editingUserId ? "update" : "create"} user:`, err);
+      const errorMessage = err.message || `Failed to ${editingUserId ? "update" : "create"} user. Please try again.`;
+      setError(errorMessage);
+      toast.error(errorMessage);
     } finally {
       setLoading(false);
     }
   };
-  // ---------------------------------------------------
 
   const handleConfirmDelete = (userId: string) => {
     setUserToDeleteId(userId);
@@ -112,32 +136,55 @@ const PlatformUserManagement = () => {
     setUserToDeleteId(null);
   };
 
-  const handleDeleteUser = async () => {
-    if (!user?.token || !userToDeleteId) return;
+const handleDeleteUser = async () => {
+    if (!userToDeleteId) return;
 
     setLoading(true);
     setError(null);
     try {
-      await deletePlatformUser(userToDeleteId, user.token);
-      await fetchUsers();
-      handleCancelDelete();
-    } catch (err) {
-      console.error('Failed to delete user:', err);
-      setError('Failed to delete user. Please try again.');
+      const response = await deletePlatformUser(userToDeleteId);
+      
+      if (response.success) {
+        toast.success(response.message || "User deleted successfully!");
+        await fetchUsers();
+        handleCancelDelete();
+      } else {
+        const errorMessage = response.error || "Failed to delete user.";
+        setError(errorMessage);
+        toast.error(errorMessage);
+      }
+    } catch (err: any) {
+      console.error("Failed to delete user:", err);
+      const errorMessage = err.message || "Failed to delete user. Please try again.";
+      setError(errorMessage);
+      toast.error(errorMessage);
     } finally {
       setLoading(false);
     }
   };
 
-  const handleEditClick = (userToEdit: User) => {
+
+  const handleEditClick = (userToEdit: PlatformUser) => {
     setEditingUserId(userToEdit._id);
     setFormData({
       username: userToEdit.username,
       email: userToEdit.email,
-      password: '', // Do not pre-fill password for security
+      password: "", // Do not pre-fill password for security
+      firstName: userToEdit.firstName || "",
+      lastName: userToEdit.lastName || "",
+      phone: userToEdit.phone || "",
       role: userToEdit.role,
     });
     handleOpenModal();
+  };
+
+  const formatRole = (role: string): string => {
+    const roleMap: { [key: string]: string } = {
+      platform_superadmin: "Platform Super Admin",
+      platform_admin: "Platform Admin",
+      platform_employee: "Platform Employee",
+    };
+    return roleMap[role] || role;
   };
 
   return (
@@ -176,10 +223,24 @@ const PlatformUserManagement = () => {
             <table className="userTable">
               <thead className="tableHeader">
                 <tr>
-                  <th scope="col" className="tableHeaderCell">Username</th>
-                  <th scope="col" className="tableHeaderCell">Email</th>
-                  <th scope="col" className="tableHeaderCell">Role</th>
-                  <th scope="col" className="tableHeaderCell">Actions</th>
+                  <th scope="col" className="tableHeaderCell">
+                    Username
+                  </th>
+                  <th scope="col" className="tableHeaderCell">
+                    Email
+                  </th>
+                  <th scope="col" className="tableHeaderCell">
+                    Name
+                  </th>
+                  <th scope="col" className="tableHeaderCell">
+                    Phone
+                  </th>
+                  <th scope="col" className="tableHeaderCell">
+                    Role
+                  </th>
+                  <th scope="col" className="tableHeaderCell">
+                    Actions
+                  </th>
                 </tr>
               </thead>
               <tbody className="tableBody">
@@ -187,7 +248,13 @@ const PlatformUserManagement = () => {
                   <tr key={u._id}>
                     <td className="tableCellPrimary">{u.username}</td>
                     <td className="tableCellSecondary">{u.email}</td>
-                    <td className="tableCellSecondary">{u.role}</td>
+                    <td className="tableCellSecondary">
+                      {u.firstName || u.lastName
+                        ? `${u.firstName || ""} ${u.lastName || ""}`.trim()
+                        : "-"}
+                    </td>
+                    <td className="tableCellSecondary">{u.phone || "-"}</td>
+                    <td className="tableCellSecondary">{formatRole(u.role)}</td>
                     <td className="tableActions">
                       <button
                         onClick={() => handleEditClick(u)}
@@ -214,8 +281,12 @@ const PlatformUserManagement = () => {
         <div className="modalBackdrop">
           <div className="modalContainer">
             <div className="modalHeader">
-              <h2 className="modalTitle">{editingUserId ? 'Edit User' : 'Create New User'}</h2>
-              <button className="closeButton" onClick={handleCloseModal}>&times;</button>
+              <h2 className="modalTitle">
+                {editingUserId ? "Edit User" : "Create New User"}
+              </h2>
+              <button className="closeButton" onClick={handleCloseModal}>
+                &times;
+              </button>
             </div>
             <form onSubmit={handleSubmit} className="userForm">
               <div className="formGrid">
@@ -246,26 +317,59 @@ const PlatformUserManagement = () => {
                   required={!editingUserId}
                   className="formInput"
                 />
+                <input
+                  type="text"
+                  name="firstName"
+                  placeholder="First Name"
+                  value={formData.firstName}
+                  onChange={handleInputChange}
+                  className="formInput"
+                />
+                <input
+                  type="text"
+                  name="lastName"
+                  placeholder="Last Name"
+                  value={formData.lastName}
+                  onChange={handleInputChange}
+                  className="formInput"
+                />
+                <input
+                  type="text"
+                  name="phone"
+                  placeholder="Phone"
+                  value={formData.phone}
+                  onChange={handleInputChange}
+                  className="formInput"
+                />
                 <select
                   name="role"
                   value={formData.role}
                   onChange={handleInputChange}
                   className="formInput"
+                  required
                 >
                   <option value="platform_employee">Platform Employee</option>
                   <option value="platform_admin">Platform Admin</option>
-                  <option value="platform_superadmin">Platform Superadmin</option>
+                  <option value="platform_superadmin">
+                    Platform Superadmin
+                  </option>
                 </select>
               </div>
               <div className="formActions">
                 <button
                   type="submit"
                   className="submitButton"
+                  disabled={loading}
                 >
-                  {editingUserId ? 'Update User' : 'Create User'}
+                  {loading ? (
+                    <ClipLoader size={20} color="#ffffff" />
+                  ) : editingUserId ? (
+                    "Update User"
+                  ) : (
+                    "Create User"
+                  )}
                 </button>
               </div>
-              {loading && <ClipLoader size={20} color="#4F46E5" />}
               {error && <p className="errorMessage">{error}</p>}
             </form>
           </div>
@@ -276,10 +380,25 @@ const PlatformUserManagement = () => {
         <div className="modalBackdrop">
           <div className="modalContainer smallModal">
             <h2 className="modalTitle">Confirm Deletion</h2>
-            <p className="modalText">Are you sure you want to delete this user? This action cannot be undone.</p>
+            <p className="modalText">
+              Are you sure you want to delete this user? This action cannot be
+              undone.
+            </p>
             <div className="modalActions">
-              <button onClick={handleDeleteUser} className="deleteButton">Delete</button>
-              <button onClick={handleCancelDelete} className="cancelButton">Cancel</button>
+              <button
+                onClick={handleDeleteUser}
+                className="deleteButton"
+                disabled={loading}
+              >
+                {loading ? <ClipLoader size={20} color="#ffffff" /> : "Delete"}
+              </button>
+              <button
+                onClick={handleCancelDelete}
+                className="cancelButton"
+                disabled={loading}
+              >
+                Cancel
+              </button>
             </div>
           </div>
         </div>

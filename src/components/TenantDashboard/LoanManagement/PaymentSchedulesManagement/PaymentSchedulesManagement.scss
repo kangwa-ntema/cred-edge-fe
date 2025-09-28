@@ -1,0 +1,395 @@
+// fe/src/components/TenantDashboard/LoanManagement/PaymentsScheduleManagement/PaymentSchedulesManagement.scss
+
+@import '../../styles/variables.scss';
+
+.paymentSchedules {
+  min-height: 100vh;
+  background-color: var(--clr-white-smoke);
+  padding: 1.5rem;
+
+  @media (min-width: $md) {
+    padding: 2rem;
+  }
+}
+
+.schedulesContainer {
+  max-width: 80rem;
+  margin: 0 auto;
+}
+
+// Header
+.schedulesHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+
+  @media (min-width: $md) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+}
+
+.headerContent {
+  flex: 1;
+}
+
+.schedulesTitle {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: var(--clr-black-pearl);
+  margin-bottom: 0.5rem;
+
+  @media (min-width: $md) {
+    font-size: 2.25rem;
+  }
+}
+
+.loanInfo {
+  color: var(--clr-neutral-400);
+  font-size: 1rem;
+}
+
+.generateButton {
+  background-color: var(--clr-summer-green);
+  color: var(--clr-black-pearl);
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  border: none;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  white-space: nowrap;
+
+  &:hover {
+    background-color: var(--clr-pickled-bluewood);
+    color: white;
+  }
+}
+
+// Summary Cards
+.summaryGrid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 1fr;
+  margin-bottom: 1.5rem;
+
+  @media (min-width: $md) {
+    grid-template-columns: repeat(3, 1fr);
+    margin-bottom: 2rem;
+  }
+}
+
+.summaryCard {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.summaryContent {
+  display: flex;
+  align-items: center;
+}
+
+.summaryIcon {
+  padding: 0.75rem;
+  border-radius: 9999px;
+  margin-right: 1rem;
+
+  &.totalDue {
+    background-color: var(--clr-ice);
+    color: var(--clr-pickled-bluewood);
+  }
+
+  &.totalPaid {
+    background-color: var(--clr-honey-dew);
+    color: var(--clr-summer-green);
+  }
+
+  &.pending {
+    background-color: lighten($clr-pending, 40%);
+    color: var(--clr-pending);
+  }
+}
+
+.summaryText {
+  .label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--clr-neutral-400);
+    margin-bottom: 0.25rem;
+  }
+
+  .value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--clr-black-pearl);
+  }
+}
+
+// Table
+.tableContainer {
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tableHeader {
+  background-color: var(--clr-neutral-700);
+}
+
+.tableHeaderCell {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--clr-neutral-400);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+
+  @media (min-width: $md) {
+    padding: 1rem 1.5rem;
+    font-size: 0.875rem;
+  }
+}
+
+.tableRow {
+  border-bottom: 1px solid var(--clr-neutral-600);
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: var(--clr-neutral-700);
+  }
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.tableCell {
+  padding: 1rem 1rem;
+  font-size: 0.875rem;
+  color: var(--clr-black-pearl);
+
+  @media (min-width: $md) {
+    padding: 1.25rem 1.5rem;
+    font-size: 1rem;
+  }
+}
+
+// Status Badges
+.statusBadge {
+  display: inline-flex;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: capitalize;
+
+  &.pending {
+    background-color: var(--clr-pending);
+    color: white;
+  }
+
+  &.paid {
+    background-color: var(--clr-summer-green);
+    color: var(--clr-black-pearl);
+  }
+
+  &.overdue {
+    background-color: var(--clr-sunrise-orange);
+    color: white;
+  }
+
+  &.partial {
+    background-color: var(--clr-ice);
+    color: var(--clr-pickled-bluewood);
+  }
+}
+
+.overdueText {
+  color: var(--clr-sunrise-orange);
+  font-weight: 500;
+}
+
+.processButton {
+  color: var(--clr-pickled-bluewood);
+  background: none;
+  border: none;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.2s;
+
+  &:hover {
+    color: var(--clr-black-pearl);
+  }
+}
+
+// Empty State
+.emptyState {
+  text-align: center;
+  padding: 3rem 1rem;
+
+  @media (min-width: $md) {
+    padding: 4rem 2rem;
+  }
+}
+
+.emptyIcon {
+  width: 4rem;
+  height: 4rem;
+  color: var(--clr-neutral-500);
+  margin: 0 auto 1rem;
+
+  @media (min-width: $md) {
+    width: 5rem;
+    height: 5rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+.emptyTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--clr-black-pearl);
+  margin-bottom: 0.5rem;
+
+  @media (min-width: $md) {
+    font-size: 1.5rem;
+  }
+}
+
+.emptyDescription {
+  color: var(--clr-neutral-400);
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+// Payment Modal
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  z-index: 50;
+}
+
+.modal {
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  max-width: 28rem;
+  width: 100%;
+}
+
+.modalHeader {
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--clr-neutral-600);
+}
+
+.modalTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--clr-black-pearl);
+}
+
+.modalBody {
+  padding: 1.5rem;
+}
+
+.formGroup {
+  .label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--clr-neutral-300);
+    margin-bottom: 0.5rem;
+  }
+
+  .input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--clr-neutral-600);
+    border-radius: 0.375rem;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+
+    &:focus {
+      outline: none;
+      border-color: var(--clr-pickled-bluewood);
+    }
+  }
+}
+
+.modalActions {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: flex-end;
+  padding-top: 1rem;
+}
+
+.cancelButton {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--clr-neutral-600);
+  color: var(--clr-neutral-300);
+  background-color: white;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    background-color: var(--clr-neutral-700);
+  }
+}
+
+.confirmButton {
+  padding: 0.5rem 1rem;
+  background-color: var(--clr-pickled-bluewood);
+  color: white;
+  border: none;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: var(--clr-black-pearl);
+  }
+}
+
+// Loading State
+.loadingState {
+  .skeleton {
+    background: linear-gradient(90deg, var(--clr-neutral-600) 25%, var(--clr-neutral-500) 50%, var(--clr-neutral-600) 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+    border-radius: 0.25rem;
+  }
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}

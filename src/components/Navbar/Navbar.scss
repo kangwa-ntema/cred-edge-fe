@@ -1,0 +1,356 @@
+// fe/src/components/Navbar/Navbar.scss
+
+// --- Color Variables ---
+$clr-dark-green: hsl(191, 33%, 10%);
+$clr-kelly-green: #27474e;
+$clr-asparagus: hsl(8, 75%, 65%);
+$clr-avocado: #8ab9b5;
+$clr-dark-moss-green: #8ab9b5;
+$clr-hunter-green: #e0fbfc;
+$clr-charcoal-gray: hsl(180, 4%, 5%);
+$clr-honey-dew: hsl(158, 100%, 96%);
+$clr-white-smoke: hsl(0, 0%, 96%);
+$clr-onyx: hsl(0, 0%, 24%);
+
+// --- Mapped Semantic Color Variables ---
+$primary-color: $clr-kelly-green;
+$secondary-color: $clr-dark-moss-green;
+$accent-color: $clr-asparagus;
+
+$text-dark: $clr-onyx;
+$text-light: $clr-white-smoke;
+$text-white: #ffffff;
+
+$bg-dark: $clr-dark-green;
+$bg-dark-hover: lighten($clr-dark-green, 10%);
+
+$font-family-inter: 'Inter', sans-serif;
+$nav-height: 70px;
+$padding-x-desktop: 4rem;
+$padding-x-tablet: 2rem;
+$padding-x-mobile: 1rem;
+
+// --- Mixins ---
+@mixin respond-to($breakpoint) {
+    @if $breakpoint == tablet {
+        @media (max-width: 850px) { @content; }
+    }
+}
+
+/* --- General Navigation Bar Styles --- */
+.navbarContainer {
+    background: $bg-dark;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    font-family: $font-family-inter;
+    height: $nav-height;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 $padding-x-desktop;
+}
+
+.navbarContent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.navbarLogoLink {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.navbarLogo {
+    height: 50px;
+    width: auto;
+    transition: transform 0.3s ease;
+    
+    &:hover {
+        transform: scale(1.05);
+    }
+}
+
+/* --- Menu Toggle Button for Mobile --- */
+.menuToggle {
+    display: none;
+    background: none;
+    border: none;
+    color: $text-white;
+    cursor: pointer;
+    padding: 0.5rem;
+    
+    &:focus {
+        outline: none;
+    }
+}
+
+/* --- Navigation List --- */
+.navbarNav {
+    display: flex;
+    align-items: center;
+}
+
+.navbarNavList {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+    gap: 2rem;
+}
+
+.navbarNavItem {
+    position: relative;
+}
+
+.navbarNavItem > a {
+    color: $text-light;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 0.5rem 0;
+    position: relative;
+    transition: color 0.3s ease;
+    white-space: nowrap;
+
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: $text-white;
+        transform: scaleX(0);
+        transition: transform 0.3s ease-in-out;
+    }
+
+    &:hover::after {
+        transform: scaleX(1);
+    }
+
+    &:hover {
+        color: $clr-avocado;
+    }
+}
+
+/* --- User Dropdown Menu --- */
+.userDropdownContainer {
+    position: relative;
+    
+    .userDropdownToggle {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: $text-light;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0.5rem 0.75rem;
+        border-radius: 4px;
+        transition: background-color 0.3s ease;
+        white-space: nowrap;
+        
+        &:hover {
+            background-color: $bg-dark-hover;
+        }
+        
+        .user-info {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+            
+            .user-role {
+                font-size: 0.75rem;
+                opacity: 0.8;
+                font-weight: normal;
+            }
+        }
+    }
+}
+
+.userDropdownMenu {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    background-color: $clr-hunter-green;
+    border-radius: 8px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    padding: 0.5rem 0;
+    min-width: 220px;
+    list-style: none;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+    z-index: 1001;
+    
+    &.open {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+    
+    .dropdownNavItem {
+        margin: 0;
+        
+        a, button {
+            display: block;
+            width: 100%;
+            padding: 0.75rem 1.5rem;
+            color: $text-dark;
+            text-decoration: none;
+            background: none;
+            border: none;
+            text-align: left;
+            font-size: 0.95rem;
+            transition: background-color 0.2s ease, color 0.2s ease;
+            cursor: pointer;
+
+            &:hover {
+                background-color: $clr-avocado;
+                color: $primary-color;
+            }
+        }
+    }
+}
+
+.logoutButton {
+    color: $text-dark;
+    background: none;
+    border: none;
+    text-align: left;
+    font-size: 0.95rem;
+    cursor: pointer;
+    width: 100%;
+    padding: 0.75rem 1.5rem;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    
+    &:hover {
+        background-color: $clr-avocado;
+        color: $primary-color;
+    }
+}
+
+/* --- Mobile Styles --- */
+@include respond-to(tablet) {
+    .navbarContainer {
+        padding: 0 $padding-x-mobile;
+    }
+    
+    .menuToggle {
+        display: block;
+    }
+    
+    .navbarNav {
+        position: fixed;
+        top: $nav-height;
+        left: 0;
+        width: 100%;
+        height: calc(100vh - #{$nav-height});
+        background-color: $bg-dark;
+        flex-direction: column;
+        align-items: flex-start;
+        transition: transform 0.4s ease-in-out;
+        transform: translateX(-100%);
+        overflow-y: auto;
+        z-index: 1000;
+        
+        &.open {
+            transform: translateX(0);
+        }
+        
+        .navbarNavList {
+            flex-direction: column;
+            width: 100%;
+            padding: 2rem 1rem;
+            gap: 0;
+        }
+        
+        .navbarNavItem {
+            margin: 0;
+            width: 100%;
+            
+            > a,
+            > button {
+                display: block;
+                width: 100%;
+                font-size: 1.1rem;
+                padding: 1rem;
+                text-align: left;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+        }
+        
+        .userDropdownContainer {
+            width: 100%;
+            
+            .userDropdownToggle {
+                width: 100%;
+                padding: 1rem;
+                justify-content: space-between;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            
+            .userDropdownMenu {
+                position: static;
+                width: 100%;
+                background-color: transparent;
+                box-shadow: none;
+                padding: 0;
+                margin-top: 0;
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
+                min-width: auto;
+                
+                .dropdownNavItem {
+                    a, button {
+                        padding: 0.75rem 1rem 0.75rem 2rem;
+                        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                        color: $text-light;
+                        
+                        &:hover {
+                            background-color: $bg-dark-hover;
+                            color: $clr-avocado;
+                        }
+                    }
+                }
+                
+                .logoutButton {
+                    padding: 0.75rem 1rem 0.75rem 2rem;
+                    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                    color: $text-light;
+                    text-align: left;
+                    
+                    &:hover {
+                        background-color: $bg-dark-hover;
+                        color: $clr-avocado;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@include respond-to(mobile) {
+    .navbarContainer {
+        padding: 0 0.5rem;
+    }
+    
+    .navbarLogo {
+        height: 40px;
+    }
+    
+    .navbarNav .navbarNavList {
+        padding: 1rem 0.5rem;
+    }
+}

@@ -1,7 +1,8 @@
+// fe/src/components/auth/LoginForm.tsx
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/authContext';
-import './LoginForm.scss'; 
+import './LoginForm.scss';
 
 const LoginForm: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -10,13 +11,10 @@ const LoginForm: React.FC = () => {
   const [loginError, setLoginError] = useState<string>('');
   const [isLoading, setIsLoading] = useState(false);
   
-  // Get login from the AuthContext and the navigate hook
   const { login, loading, user } = useAuth();
   const navigate = useNavigate();
 
-  // Handle redirection after successful login by watching the user state
   useEffect(() => {
-    // Check if authentication is finished and a user object exists
     if (!loading && user) {
       if (user.role.startsWith('platform')) {
         navigate('/platform/dashboard', { replace: true });
@@ -30,11 +28,9 @@ const LoginForm: React.FC = () => {
     e.preventDefault();
     setLoginError('');
     setIsLoading(true);
-    console.log('[LoginForm] Form submitted. Attempting login...');
     
     try {
       await login(email, password);
-      // The useEffect hook will now handle the redirection after the login promise resolves
     } catch (error: any) {
       console.error('Login failed:', error);
       setLoginError(error.message || 'Login failed. Please check your credentials.');
@@ -52,7 +48,7 @@ const LoginForm: React.FC = () => {
       <div className="loginFormCard">
         <h1 className="loginFormHeading">Login</h1>
         <form onSubmit={handleSubmit} className="loginFormForm">
-          {(loginError) && <div className="error-message">{loginError}</div>}
+          {loginError && <div className="error-message">{loginError}</div>}
           <div className="formGroup">
             <label htmlFor="email">Email</label>
             <input

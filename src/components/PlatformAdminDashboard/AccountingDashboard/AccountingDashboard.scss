@@ -1,0 +1,402 @@
+// Base color palette and dimensions
+:root {
+  --clr-black-pearl: hsl(191, 33%, 10%);
+  --clr-pickled-bluewood: hsl(191, 33%, 23%);
+  --clr-sunrise-orange: hsl(8, 75%, 65%);
+  --clr-summer-green: hsl(175, 25%, 63%);
+  --clr-ice: hsl(182, 82%, 93%);
+  --clr-charcoal-gray: hsl(180, 4%, 5%);
+  --clr-honey-dew: hsl(158, 100%, 96%);
+  --clr-white-smoke: hsl(0, 0%, 96%);
+  --clr-onyx: hsl(0, 0%, 24%);
+  
+  --clr-success: hsl(125, 67%, 44%);
+  --clr-success-light: hsl(125, 80%, 95%);
+  --clr-warning: hsl(45, 100%, 51%);
+  --clr-warning-light: hsl(45, 100%, 95%);
+  --clr-danger: hsl(0, 72%, 51%);
+  --clr-danger-light: hsl(0, 100%, 95%);
+
+  --clr-neutral-100: hsl(0, 0%, 5%);
+  --clr-neutral-200: hsl(0, 0%, 20%);
+  --clr-neutral-300: hsl(0, 0%, 35%);
+  --clr-neutral-400: hsl(0, 0%, 50%);
+  --clr-neutral-500: hsl(0, 0%, 65%);
+  --clr-neutral-600: hsl(0, 0%, 80%);
+  --clr-neutral-700: hsl(0, 0%, 95%);
+
+  --max-width-xsm: 400px;
+  --max-width-sm: 576px;
+  --max-width-md: 768px;
+  --max-width-lg: 922px;
+  --max-width-xl: 1200px;
+}
+
+
+// Base styles for the accounting dashboard
+.accountingSection {
+  background-color: var(--clr-white-smoke);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(var(--clr-onyx), 0.05);
+  padding: 2rem;
+  margin-top: 2rem;
+  font-family: 'Inter', sans-serif;
+}
+
+// Section Header and Buttons
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  h2 {
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: var(--clr-black-pearl);
+  }
+}
+
+.btn-primary, .btn-secondary {
+  border: none;
+  border-radius: 8px;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-primary {
+  background-color: var(--clr-pickled-bluewood);
+  color: var(--clr-white-smoke);
+  &:hover {
+    background-color: var(--clr-black-pearl);
+    box-shadow: 0 4px 10px rgba(var(--clr-pickled-bluewood), 0.2);
+  }
+}
+
+.btn-secondary {
+  background-color: var(--clr-ice);
+  color: var(--clr-pickled-bluewood);
+  margin-left: 0.5rem;
+  &:hover {
+    background-color: var(--clr-neutral-600);
+    color: var(--clr-black-pearl);
+    box-shadow: 0 4px 10px rgba(var(--clr-ice), 0.2);
+  }
+}
+
+// Table Styling
+.tableContainer {
+  overflow-x: auto;
+  border-radius: 8px;
+  border: 1px solid var(--clr-ice);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  thead {
+    background-color: var(--clr-neutral-700);
+    th {
+      padding: 1rem;
+      text-align: left;
+      font-weight: 600;
+      color: var(--clr-neutral-400);
+      text-transform: uppercase;
+      font-size: 0.8rem;
+    }
+  }
+  tbody {
+    tr {
+      border-bottom: 1px solid var(--clr-ice);
+      &:last-child {
+        border-bottom: none;
+      }
+      &:hover {
+        background-color: var(--clr-neutral-700);
+      }
+    }
+    td {
+      padding: 1rem;
+      font-size: 0.95rem;
+      color: var(--clr-pickled-bluewood);
+    }
+  }
+}
+
+// Account Type Labels
+.account-type {
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  &.asset {
+    background-color: var(--clr-success-light);
+    color: var(--clr-success);
+  }
+  &.liability {
+    background-color: var(--clr-danger-light);
+    color: var(--clr-danger);
+  }
+  &.equity {
+    background-color: var(--clr-ice);
+    color: var(--clr-pickled-bluewood);
+  }
+  &.revenue {
+    background-color: var(--clr-warning-light);
+    color: var(--clr-warning);
+  }
+  &.expense {
+    background-color: var(--clr-honey-dew);
+    color: var(--clr-summer-green);
+  }
+}
+
+// Summary Cards
+.accountingSummary {
+  margin-top: 2.5rem;
+  h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--clr-black-pearl);
+    margin-bottom: 1rem;
+  }
+}
+
+.summaryCards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.summaryCard {
+  background-color: var(--clr-neutral-700);
+  border: 1px solid var(--clr-ice);
+  border-radius: 12px;
+  padding: 1.5rem;
+  flex-grow: 1;
+  min-width: 250px;
+  text-align: center;
+  h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--clr-neutral-400);
+    margin-bottom: 0.5rem;
+  }
+  p {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--clr-pickled-bluewood);
+  }
+}
+
+// Loading state
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  font-size: 1.25rem;
+  color: var(--clr-neutral-400);
+}
+
+// New styles for the main Accounting Management component
+.accountingManagementContainer {
+  font-family: 'Inter', sans-serif;
+  max-width: var(--max-width-xl);
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--clr-black-pearl);
+  }
+}
+
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.dateFilter {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  input[type="date"] {
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--clr-neutral-600);
+    border-radius: 8px;
+    font-size: 0.9rem;
+    color: var(--clr-neutral-200);
+    background-color: var(--clr-white-smoke);
+    transition: border-color 0.2s ease-in-out;
+    &:focus {
+      outline: none;
+      border-color: var(--clr-pickled-bluewood);
+    }
+  }
+  span {
+    color: var(--clr-neutral-400);
+  }
+}
+
+// Tab navigation
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  border-bottom: 2px solid var(--clr-neutral-700);
+  margin-bottom: 2rem;
+
+  button {
+    background-color: transparent;
+    border: none;
+    padding: 1rem 1.5rem;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--clr-neutral-400);
+    transition: all 0.2s ease-in-out;
+    border-radius: 8px 8px 0 0;
+
+    &:hover {
+      color: var(--clr-black-pearl);
+      background-color: var(--clr-neutral-700);
+    }
+
+    &.active {
+      color: var(--clr-pickled-bluewood);
+      border-bottom: 2px solid var(--clr-pickled-bluewood);
+      transform: translateY(2px); // Visual lift for the active tab
+    }
+  }
+}
+
+// Modal styles
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  background-color: var(--clr-white-smoke);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 600px;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+
+  h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--clr-black-pearl);
+  }
+
+  .modal-close {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: var(--clr-neutral-400);
+    &:hover {
+      color: var(--clr-danger);
+    }
+  }
+}
+
+.modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+
+  label {
+    font-weight: 500;
+    color: var(--clr-pickled-bluewood);
+    margin-bottom: 0.25rem;
+  }
+
+  input, select, textarea {
+    padding: 0.75rem;
+    border: 1px solid var(--clr-neutral-600);
+    border-radius: 8px;
+    font-size: 0.95rem;
+    color: var(--clr-neutral-200);
+    background-color: var(--clr-white-smoke);
+
+    &:focus {
+      outline: none;
+      border-color: var(--clr-pickled-bluewood);
+    }
+  }
+
+  textarea {
+    resize: vertical;
+  }
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.modal-actions button {
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  border: none;
+}
+
+.modal-actions button:first-child { // Cancel button
+  background-color: var(--clr-neutral-600);
+  color: var(--clr-black-pearl);
+  &:hover:not(:disabled) {
+    background-color: var(--clr-neutral-500);
+  }
+}
+
+.modal-actions button:last-child { // Add Payment button
+  background-color: var(--clr-pickled-bluewood);
+  color: var(--clr-white-smoke);
+  &:hover:not(:disabled) {
+    background-color: var(--clr-black-pearl);
+  }
+}
+
+.modal-actions button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

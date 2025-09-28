@@ -1,0 +1,288 @@
+// fe/src/components/TenantDashboard/LoanManagement/LoanProductsManagement/ProductCreationWizard.scss
+
+@import '../../../../../styles/variables';
+
+.wizard-container {
+  background: white;
+  border-radius: 0.75rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.wizard-header {
+  padding: 2rem;
+  border-bottom: 1px solid var(--clr-neutral-600);
+  background: linear-gradient(135deg, var(--clr-ice) 0%, var(--clr-white-smoke) 100%);
+
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--clr-black-pearl);
+    margin-bottom: 1.5rem;
+  }
+}
+
+.wizard-steps {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--clr-neutral-600);
+    transform: translateY(-50%);
+    z-index: 1;
+  }
+}
+
+.wizard-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+  flex: 1;
+
+  &.active {
+    .step-number {
+      background: var(--clr-pickled-bluewood);
+      color: white;
+      border-color: var(--clr-pickled-bluewood);
+    }
+
+    .step-label {
+      color: var(--clr-black-pearl);
+      font-weight: 600;
+    }
+  }
+
+  &.completed {
+    .step-number {
+      background: var(--clr-summer-green);
+      color: white;
+      border-color: var(--clr-summer-green);
+    }
+  }
+}
+
+.step-number {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  border: 2px solid var(--clr-neutral-600);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  background: white;
+  margin-bottom: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.step-label {
+  font-size: 0.75rem;
+  color: var(--clr-neutral-400);
+  text-align: center;
+  font-weight: 500;
+}
+
+.wizard-content {
+  padding: 2rem;
+  min-height: 400px;
+}
+
+.wizard-actions {
+  padding: 1.5rem 2rem;
+  border-top: 1px solid var(--clr-neutral-600);
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  background: var(--clr-white-smoke);
+
+  button {
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    &:not(:disabled):hover {
+      transform: translateY(-1px);
+    }
+  }
+
+  button:not(.cancel-btn) {
+    background: var(--clr-pickled-bluewood);
+    color: white;
+    border: none;
+
+    &:hover:not(:disabled) {
+      background: var(--clr-black-pearl);
+    }
+  }
+
+  .cancel-btn {
+    background: white;
+    border: 1px solid var(--clr-neutral-600);
+    color: var(--clr-neutral-400);
+
+    &:hover {
+      background: var(--clr-neutral-700);
+      border-color: var(--clr-neutral-400);
+    }
+  }
+}
+
+// Wizard Step Content Common Styles
+.wizard-step-content {
+  max-width: 800px;
+  margin: 0 auto;
+
+  h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--clr-black-pearl);
+    margin-bottom: 0.5rem;
+  }
+
+  .step-description {
+    color: var(--clr-neutral-400);
+    margin-bottom: 2rem;
+    font-size: 1rem;
+  }
+}
+
+.config-section {
+  background: white;
+  border: 1px solid var(--clr-neutral-600);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+
+  h4 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--clr-black-pearl);
+    margin-bottom: 1rem;
+  }
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 1rem;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.form-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 1rem;
+
+  @media (min-width: 640px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.form-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 1rem;
+
+  @media (min-width: 640px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.form-group {
+  label {
+    display: block;
+    font-weight: 500;
+    color: var(--clr-black-pearl);
+    margin-bottom: 0.5rem;
+  }
+
+  input, select, textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--clr-neutral-600);
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+
+    &:focus {
+      outline: none;
+      border-color: var(--clr-pickled-bluewood);
+      box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1);
+    }
+  }
+
+  small {
+    display: block;
+    color: var(--clr-neutral-400);
+    font-size: 0.75rem;
+    margin-top: 0.25rem;
+  }
+}
+
+.form-check {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  input[type="checkbox"] {
+    width: auto;
+  }
+
+  label {
+    margin-bottom: 0;
+    font-weight: 400;
+  }
+}
+
+.form-check-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.btn-secondary {
+  background: white;
+  border: 1px solid var(--clr-neutral-600);
+  color: var(--clr-black-pearl);
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: var(--clr-neutral-700);
+    border-color: var(--clr-neutral-400);
+  }
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}

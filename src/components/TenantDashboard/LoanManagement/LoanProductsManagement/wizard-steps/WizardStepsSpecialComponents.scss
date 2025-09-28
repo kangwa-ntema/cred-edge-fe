@@ -1,0 +1,127 @@
+// fe/src/components/TenantDashboard/LoanManagement/LoanProductsManagement/wizard-steps/WizardStepsSpecialComponents.scss
+
+@import '../../../../../styles/variables';
+
+// Specialized components
+.type-icon,
+.method-info,
+.risk-info {
+  flex: 1;
+}
+
+.method-info,
+.risk-info {
+  h5 {
+    font-weight: 600;
+    color: var(--clr-black-pearl);
+    margin-bottom: 0.25rem;
+  }
+
+  p {
+    color: var(--clr-neutral-400);
+    font-size: 0.875rem;
+    line-height: 1.4;
+  }
+}
+
+.risk-indicator {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  margin-top: 0.5rem;
+
+  &.green { background: var(--clr-summer-green); }
+  &.blue { background: var(--clr-pickled-bluewood); }
+  &.orange { background: #f59e0b; }
+  &.red { background: var(--clr-sunrise-orange); }
+}
+
+// Formula builder
+.formula-builder {
+  input {
+    margin-bottom: 0.5rem;
+  }
+}
+
+.formula-variables {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+
+  span {
+    color: var(--clr-neutral-400);
+    font-size: 0.875rem;
+  }
+
+  button {
+    background: var(--clr-ice);
+    border: 1px solid var(--clr-jagged-ice);
+    color: var(--clr-pickled-bluewood);
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background: var(--clr-jagged-ice);
+    }
+  }
+}
+
+// LTV Configuration
+.ltv-config {
+  .ltv-range {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+
+    @media (min-width: 640px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .range-value {
+    display: block;
+    text-align: center;
+    font-weight: 600;
+    color: var(--clr-pickled-bluewood);
+    margin-top: 0.5rem;
+  }
+}
+
+.ltv-preview {
+  text-align: center;
+
+  .ltv-indicator {
+    width: 100%;
+    height: 0.5rem;
+    background: var(--clr-neutral-600);
+    border-radius: 0.25rem;
+    margin: 1rem 0;
+    overflow: hidden;
+  }
+
+  .ltv-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--clr-summer-green) 0%, var(--clr-pickled-bluewood) 100%);
+    transition: width 0.3s ease;
+  }
+}
+
+// Toggle section
+.toggle-section {
+  .toggle-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .toggle-description {
+    color: var(--clr-neutral-400);
+    font-size: 0.875rem;
+  }
+}

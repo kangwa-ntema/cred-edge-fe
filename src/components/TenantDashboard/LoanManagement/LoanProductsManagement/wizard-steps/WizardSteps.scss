@@ -1,0 +1,12 @@
+// fe/src/components/TenantDashboard/LoanManagement/LoanProductsManagement/wizard-steps/WizardSteps.scss
+// Main import file that combines all wizard step styles
+
+@import './WizardStepsBase.scss';
+@import './WizardStepsGrids.scss';
+@import './WizardStepsCards.scss';
+@import './WizardStepsFormElements.scss';
+@import './WizardStepsItems.scss';
+@import './WizardStepsSpecialComponents.scss';
+@import './WizardStepsModals.scss';
+@import './WizardStepsReview.scss';
+@import './WizardStepsUtilities.scss';

@@ -1,0 +1,347 @@
+/* Styles for the Platform Tenant Management Page */
+/* Using the provided CSS variables for a consistent look */
+:root {
+  --clr-black-pearl: hsl(191, 33%, 10%);
+  --clr-pickled-bluewood: hsl(191, 33%, 23%);
+  --clr-sunrise-orange: hsl(8, 75%, 65%);
+  --clr-summer-green: hsl(175, 25%, 63%);
+  --clr-ice: hsl(182, 82%, 93%);
+  --clr-charcoal-gray: hsl(180, 4%, 5%);
+  --clr-honey-dew: hsl(158, 100%, 96%);
+  --clr-white-smoke: hsl(0, 0%, 96%);
+  --clr-onyx: hsl(0, 0%, 24%);
+
+  --clr-success-msg: hsl(110, 90%, 50%);
+  --clr-warning-msg: hsl(0, 90%, 40%);
+
+  --clr-neutral-100: hsl(0, 0%, 5%);
+  --clr-neutral-200: hsl(0, 0%, 20%);
+  --clr-neutral-300: hsl(0, 0%, 35%);
+  --clr-neutral-400: hsl(0, 0%, 50%);
+  --clr-neutral-500: hsl(0, 0%, 65%);
+  --clr-neutral-600: hsl(0, 0%, 80%);
+  --clr-neutral-700: hsl(0, 0%, 95%);
+}
+
+// fe/src/components/platformAdminDashboard/TenantManagement/TenantManagement.scss
+
+.platformTenantManagementContainer {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  .header {
+    margin-bottom: 2rem;
+    
+    h1 {
+      color: #333;
+      margin-bottom: 0.5rem;
+      font-size: 2.5rem;
+      font-weight: 700;
+    }
+
+    .subtitle {
+      color: #666;
+      font-size: 1.1rem;
+      margin: 0;
+    }
+  }
+
+  .content {
+    .actionButtons {
+      margin-bottom: 2rem;
+      
+      .createButton {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 12px 24px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: 600;
+        transition: all 0.3s ease;
+
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+
+        &:active {
+          transform: translateY(0);
+        }
+      }
+    }
+
+    .tenantList {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+
+      .tenantCard {
+        background: white;
+        border-radius: 12px;
+        padding: 1.5rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border: 1px solid #e0e0e0;
+        transition: all 0.3s ease;
+
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .tenantCardHeader {
+          display: flex;
+          justify-content: between;
+          align-items: center;
+          margin-bottom: 1rem;
+
+          h3 {
+            margin: 0;
+            color: #333;
+            font-size: 1.3rem;
+            flex: 1;
+          }
+
+          .statusBadge {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+
+            &.active {
+              background: #e8f5e8;
+              color: #2e7d32;
+            }
+
+            &.suspended {
+              background: #ffebee;
+              color: #c62828;
+            }
+
+            &.trial {
+              background: #fff3e0;
+              color: #ef6c00;
+            }
+
+            &.cancelled {
+              background: #f5f5f5;
+              color: #757575;
+            }
+          }
+        }
+
+        .tenantDetails {
+          p {
+            margin: 0.5rem 0;
+            color: #666;
+            font-size: 0.9rem;
+
+            strong {
+              color: #333;
+              margin-right: 0.5rem;
+            }
+          }
+        }
+
+        .cardActions {
+          display: flex;
+          gap: 0.5rem;
+          margin-top: 1.5rem;
+          padding-top: 1rem;
+          border-top: 1px solid #eee;
+
+          button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            flex: 1;
+
+            &:disabled {
+              opacity: 0.5;
+              cursor: not-allowed;
+            }
+
+            &.viewButton {
+              background: #e3f2fd;
+              color: #1976d2;
+
+              &:hover:not(:disabled) {
+                background: #bbdefb;
+              }
+            }
+
+            &.editButton {
+              background: #fff3e0;
+              color: #ef6c00;
+
+              &:hover:not(:disabled) {
+                background: #ffe0b2;
+              }
+            }
+
+            &.deleteButton {
+              background: #ffebee;
+              color: #d32f2f;
+
+              &:hover:not(:disabled) {
+                background: #ffcdd2;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .emptyState {
+      text-align: center;
+      padding: 3rem;
+      background: white;
+      border-radius: 12px;
+      border: 2px dashed #e0e0e0;
+
+      h3 {
+        color: #666;
+        margin-bottom: 1rem;
+      }
+
+      p {
+        color: #999;
+        margin-bottom: 2rem;
+      }
+    }
+  }
+}
+
+.loadingState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem;
+  color: #666;
+
+  p {
+    margin-top: 1rem;
+  }
+}
+
+// Modal styles (keep these if you want global modal styles)
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.modal-container {
+  background: white;
+  border-radius: 12px;
+  max-width: 500px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  border-bottom: 1px solid #eee;
+  
+  .modal-title {
+    margin: 0;
+    color: #333;
+    font-size: 1.3rem;
+  }
+
+  .modal-close-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #999;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      color: #333;
+    }
+  }
+}
+
+.modal-body {
+  padding: 1.5rem;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  margin-top: 1.5rem;
+
+  button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+
+    &.confirm-delete {
+      background: #d32f2f;
+      color: white;
+
+      &:hover {
+        background: #b71c1c;
+      }
+    }
+
+    &.cancel-delete {
+      background: #f5f5f5;
+      color: #666;
+
+      &:hover {
+        background: #e0e0e0;
+      }
+    }
+  }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .platformTenantManagementContainer {
+    padding: 1rem;
+  }
+
+  .tenantList {
+    grid-template-columns: 1fr !important;
+  }
+
+  .cardActions {
+    flex-direction: column;
+    
+    button {
+      width: 100%;
+    }
+  }
+}
