@@ -1,5 +1,30 @@
 // fe/src/types/loanTypes.ts
 
+// src/types/loanTypes.ts - Add missing properties
+export interface LoanProduct {
+  _id?: string;
+  name: string;
+  code: string;
+  description: string;
+  productCategory: string;
+  loanType: string;
+  configuration: any; // Use a more specific type if available
+  approvalWorkflow: any;
+  status: string;
+  // Add other missing properties
+}
+
+export interface CreateLoanProductData {
+  name: string;
+  code: string;
+  description: string;
+  productCategory: string; // Add this missing property
+  loanType: string;
+  configuration: any;
+  approvalWorkflow: any;
+  status: string;
+}
+
 export interface LoanProduct {
   _id: string;
   name: string;
