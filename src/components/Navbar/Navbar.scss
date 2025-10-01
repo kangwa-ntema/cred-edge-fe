@@ -1,34 +1,5 @@
 // fe/src/components/Navbar/Navbar.scss
-
-// --- Color Variables ---
-$clr-dark-green: hsl(191, 33%, 10%);
-$clr-kelly-green: #27474e;
-$clr-asparagus: hsl(8, 75%, 65%);
-$clr-avocado: #8ab9b5;
-$clr-dark-moss-green: #8ab9b5;
-$clr-hunter-green: #e0fbfc;
-$clr-charcoal-gray: hsl(180, 4%, 5%);
-$clr-honey-dew: hsl(158, 100%, 96%);
-$clr-white-smoke: hsl(0, 0%, 96%);
-$clr-onyx: hsl(0, 0%, 24%);
-
-// --- Mapped Semantic Color Variables ---
-$primary-color: $clr-kelly-green;
-$secondary-color: $clr-dark-moss-green;
-$accent-color: $clr-asparagus;
-
-$text-dark: $clr-onyx;
-$text-light: $clr-white-smoke;
-$text-white: #ffffff;
-
-$bg-dark: $clr-dark-green;
-$bg-dark-hover: lighten($clr-dark-green, 10%);
-
-$font-family-inter: 'Inter', sans-serif;
-$nav-height: 70px;
-$padding-x-desktop: 4rem;
-$padding-x-tablet: 2rem;
-$padding-x-mobile: 1rem;
+@import '../../styles/variables.scss';
 
 // --- Mixins ---
 @mixin respond-to($breakpoint) {
@@ -44,6 +15,7 @@ $padding-x-mobile: 1rem;
     position: sticky;
     top: 0;
     left: 0;
+    right: 0;
     width: 100%;
     z-index: 1000;
     font-family: $font-family-inter;

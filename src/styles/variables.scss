@@ -38,10 +38,27 @@ $clr-warning-msg: hsl(0, 90%, 40%);
 $clr-pending: #f59e0b;
 $clr-paid: #10b981;
 
+$primary-color: $clr-pickled-bluewood;
+$secondary-color: $clr-summer-green;
+$accent-color: $clr-sunrise-orange;
+
+$text-dark: $clr-black-pearl;
+$text-light: $clr-white-smoke;
+$text-white: #ffffff;
+
+$bg-dark: $clr-black-pearl;
+$bg-dark-hover: lighten($clr-black-pearl, 10%);
+
+$font-family-inter: 'Inter', sans-serif;
+$nav-height: 70px;
+$padding-x-desktop: 4rem;
+$padding-x-tablet: 2rem;
+$padding-x-mobile: 1rem;
+
 // ==========================================================================
 // CSS CUSTOM PROPERTIES (For dynamic theming and JS access)
 // ==========================================================================
-:root {
+/* :root {
   // Primary Colors
   --clr-black-pearl: #{$clr-black-pearl};
   --clr-pickled-bluewood: #{$clr-pickled-bluewood};
@@ -80,7 +97,7 @@ $clr-paid: #10b981;
   --clr-active: var(--clr-summer-green);
   --clr-overdue: var(--clr-sunrise-orange);
   --clr-paid: #{$clr-paid};
-}
+} */
 
 // ==========================================================================
 // SASS MIXINS (Optional but helpful)
@@ -143,3 +160,16 @@ $clr-paid: #10b981;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+$clr-dark-green: hsl(191, 33%, 10%);
+$clr-kelly-green: #27474e;
+$clr-asparagus: hsl(8, 75%, 65%);
+$clr-avocado: #8ab9b5;
+$clr-dark-moss-green: #8ab9b5;
+$clr-hunter-green: #e0fbfc;
+$clr-charcoal-gray: hsl(180, 4%, 5%);
+$clr-honey-dew: hsl(158, 100%, 96%);
+$clr-white-smoke: hsl(0, 0%, 96%);
+$clr-onyx: hsl(0, 0%, 24%);
+
+// --- Mapped Semantic Color Variables ---

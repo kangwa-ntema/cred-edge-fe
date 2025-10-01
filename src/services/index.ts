@@ -11,7 +11,22 @@ export * from './api/common/authApi';
 export * from './api/platform/platformUserApi';
 export * from './api/platform/packageApi';
 export * from './api/platform/paymentApi';
-export * from './api/platform/platformAccountingApi';
+export {
+  getChartOfAccounts as getPlatformChartOfAccounts,
+  createCOAAccount as createPlatformCOAAccount,
+  updateCOAAccount as updatePlatformCOAAccount,
+  deleteCOAAccount as deletePlatformCOAAccount,
+  getJournalEntries as getPlatformJournalEntries,
+  createJournalEntry as createPlatformJournalEntry,
+  updateJournalEntry as updatePlatformJournalEntry,
+  deleteJournalEntry as deletePlatformJournalEntry,
+  postJournalEntry as postPlatformJournalEntry,
+  getPlatformRevenueReport,
+  getTenantPaymentStatus,
+  getPlatformFinancialSummary,
+  getPackagePerformance,
+  createManualPayment
+} from './api/platform/platformAccountingApi';
 export * from './api/platform/tenantUserApi'; 
 
 // Tenant-specific APIs  

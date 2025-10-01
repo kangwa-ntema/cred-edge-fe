@@ -1,109 +1,107 @@
-// fe/src/types/accounting.ts
-
 export interface ChartOfAccount {
   _id: string;
   accountNumber: string;
   accountName: string;
-  accountType: string;
+  accountType: 'asset' | 'liability' | 'equity' | 'revenue' | 'expense';
   normalBalance: 'debit' | 'credit';
-  balance: number;
-  parentAccount?: string;
   description?: string;
   isActive: boolean;
-  createdAt: string;
-  updatedAt: string;
+  parentAccount?: ChartOfAccount | string;
+  balance: number;
+  tenant?: string;
+  createdBy?: string;
+  updatedBy?: string;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+export interface JournalEntryLine {
+  account: string | ChartOfAccount;
+  debit: number;
+  credit: number;
+  description?: string;
 }
 
 export interface JournalEntry {
   _id: string;
+  entryNumber: string;
   entryDate: string;
-  referenceNumber: string;
   description: string;
-  lines: JournalLine[];
+  reference?: string;
+  lines: JournalEntryLine[];
   totalDebit: number;
   totalCredit: number;
-  status: 'draft' | 'posted';
-  createdBy: string;
+  status: 'draft' | 'posted' | 'cancelled';
   postedBy?: string;
   postedAt?: string;
-  createdAt: string;
-  updatedAt: string;
-}
-
-export interface JournalLine {
-  _id: string;
-  account: string;
-  accountNumber?: string;
-  accountName?: string;
-  debit: number;
-  credit: number;
-  description?: string;
-}
-
-export interface GeneralLedgerEntry {
-  _id: string;
-  date: string;
-  journalEntry: string;
-  referenceNumber: string;
-  account: string;
-  accountNumber: string;
-  accountName: string;
-  debit: number;
-  credit: number;
-  balance: number;
-  description: string;
+  tenant?: string;
+  createdBy?: string;
+  updatedBy?: string;
+  createdAt?: string;
+  updatedAt?: string;
 }
 
 export interface TrialBalanceAccount {
   account: string;
   accountNumber: string;
   accountName: string;
+  accountType: string;
   debit: number;
   credit: number;
   balance: number;
 }
 
 export interface TrialBalance {
-  asOfDate: string;
   accounts: TrialBalanceAccount[];
-  totalDebit: number;
-  totalCredit: number;
+  totals: {
+    totalDebit: number;
+    totalCredit: number;
+  };
+  balanceCheck: boolean;
+  asOfDate: string;
 }
 
 export interface FinancialStatement {
-  period: string;
   revenue: number;
   expenses: number;
   netIncome: number;
   assets: number;
   liabilities: number;
   equity: number;
+  period?: {
+    startDate: string;
+    endDate: string;
+  };
+  asOfDate?: string;
+  revenueAccounts?: any[];
+  expenseAccounts?: any[];
+  assetAccounts?: any[];
+  liabilityAccounts?: any[];
+  equityAccounts?: any[];
 }
 
 export interface RevenueReport {
-  revenueByPackage: RevenueByPackage[];
-  monthlyRevenue: MonthlyRevenue[];
-  paymentMethods: PaymentMethodStats[];
-}
-
-export interface RevenueByPackage {
-  packageName: string;
-  revenue: number;
-  percentage: number;
-}
-
-export interface MonthlyRevenue {
-  month: string;
-  revenue: number;
-  expenses: number;
-  netIncome: number;
-}
-
-export interface PaymentMethodStats {
-  method: string;
-  count: number;
-  totalAmount: number;
-  percentage: number;
+  revenueByPackage: Array<{
+    packageName: string;
+    revenue: number;
+    percentage?: number;
+  }>;
+  monthlyRevenue: Array<{
+    month: string;
+    revenue: number;
+    paymentCount: number;
+  }>;
+  paymentMethods: Array<{
+    method: string;
+    count: number;
+    totalAmount: number;
+    percentage?: number;
+  }>;
+  totalRevenue: number;
+  period: {
+    startDate: string;
+    endDate: string;
+  };
 }
 
 export interface TenantPaymentStatus {
@@ -113,13 +111,11 @@ export interface TenantPaymentStatus {
   status: string;
   package: string;
   monthlyPrice: number;
-  lastPayment: string;
+  lastPayment: string | null;
   totalPayments: number;
   paymentCount: number;
-  overdue: boolean;
-  tenantName?: string;
-  amountDue?: number;
-  dueDate?: string;
+  amountDue: number;
+  dueDate: string;
 }
 
 export interface PackagePerformance {
@@ -132,8 +128,5 @@ export interface PackagePerformance {
   totalRevenue: number;
   paymentCount: number;
   avgRevenuePerTenant: number;
-  packageName?: string;
-  activeSubscriptions?: number;
-  monthlyRevenue?: number;
-  growthPercentage?: number;
+  growthPercentage: number;
 }

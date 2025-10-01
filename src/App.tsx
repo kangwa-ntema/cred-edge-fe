@@ -84,7 +84,7 @@ const ProtectedRoute = ({
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center h-screen">
+      <div className="">
         Loading...
       </div>
     );
@@ -92,7 +92,7 @@ const ProtectedRoute = ({
 
   if (!user || (roles && !roles.includes(user.role))) {
     return (
-      <div className="flex justify-center items-center h-screen text-red-500">
+      <div className="">
         Access denied - You don't have permission to view this page
       </div>
     );
@@ -104,7 +104,7 @@ const ProtectedRoute = ({
 // Layout component for pages that should show the navbar
 const LayoutWithNavbar: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="">
       <Navbar />
       <main>{children}</main>
       <Footer />
@@ -115,7 +115,7 @@ const LayoutWithNavbar: React.FC<{ children: React.ReactNode }> = ({ children })
 // Layout for public pages (with navbar)
 const PublicLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="">
       <Navbar />
       <main>{children}</main>
       <Footer />
@@ -126,7 +126,7 @@ const PublicLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => 
 // Layout for auth pages (without navbar)
 const AuthLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="">
       <main>{children}</main>
     </div>
   );
@@ -152,14 +152,14 @@ const RootRedirector = () => {
   }, [user, loading, navigate]);
 
   return (
-    <div className="flex justify-center items-center h-screen">Loading...</div>
+    <div className="">Loading...</div>
   );
 };
 
 const App: React.FC = () => {
   return (
     <Router>
-      <div className="App min-h-screen bg-gray-50">
+      <div className="App">
         <ErrorBoundary>
           <ToastContainer
             position="top-right"
@@ -547,7 +547,7 @@ const App: React.FC = () => {
               path="*"
               element={
                 <PublicLayout>
-                  <div className="flex justify-center items-center h-screen">
+                  <div className="">
                     <div className="text-center">
                       <h1 className="text-4xl font-bold text-gray-800 mb-4">
                         404
