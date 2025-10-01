@@ -9,8 +9,8 @@ import {
   getTenantPaymentStatus,
   getPlatformFinancialSummary,
   getPackagePerformance,
+  createManualPayment,
 } from '../../../services/api/platform/platformAccountingApi.ts';
-import { createManualPayment } from '../../../services/api/platform/paymentApi';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './AccountingDashboard.scss';
@@ -47,25 +47,27 @@ const fetchAccountingData = async () => {
       getPackagePerformance()
     ]);
 
-    if (tenantsResult.success) {
-  console.log('Raw tenant payments data:', tenantsResult.data);
-  console.log('Type of tenant payments:', typeof tenantsResult.data);
-  console.log('Is array?', Array.isArray(tenantsResult.data));
-  
-  if (tenantsResult.data && typeof tenantsResult.data === 'object') {
-    console.log('Object keys:', Object.keys(tenantsResult.data));
-  }
-  
-  setTenantPayments(tenantsResult.data || []);
-}
+    // ✅ Handle the new response structure
+    if (revenueResult.success) {
+      console.log('Revenue report data:', revenueResult.data);
+      setRevenueReport(revenueResult.data);
+    }
 
-    if (revenueResult.success) setRevenueReport(revenueResult.data);
     if (tenantsResult.success) {
       console.log('Tenant payments data:', tenantsResult.data);
+      // Backend now returns array directly in data property
       setTenantPayments(tenantsResult.data || []);
     }
-    if (summaryResult.success) setFinancialSummary(summaryResult.data);
-    if (performanceResult.success) setPackagePerformance(performanceResult.data || []);
+
+    if (summaryResult.success) {
+      console.log('Financial summary data:', summaryResult.data);
+      setFinancialSummary(summaryResult.data);
+    }
+
+    if (performanceResult.success) {
+      console.log('Package performance data:', performanceResult.data);
+      setPackagePerformance(performanceResult.data || []);
+    }
 
   } catch (error) {
     toast.error('Failed to fetch accounting data');

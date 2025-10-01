@@ -31,16 +31,30 @@ const PackagePerformanceCard: React.FC<PackagePerformanceCardProps> = ({
     if (Array.isArray(packagePerformance)) {
       return packagePerformance;
     }
-    
-    if (packagePerformance && Array.isArray(packagePerformance.data)) {
-      return packagePerformance.data;
+
+    console.log("Raw packagePerformance data:", packagePerformance);
+
+    // Handle nested data structure
+    if (packagePerformance && packagePerformance.data) {
+      if (Array.isArray(packagePerformance.data)) {
+        return packagePerformance.data;
+      } else if (
+        packagePerformance.data.data &&
+        Array.isArray(packagePerformance.data.data)
+      ) {
+        return packagePerformance.data.data;
+      }
     }
-    
-    if (packagePerformance && packagePerformance.data && Array.isArray(packagePerformance.data.data)) {
-      return packagePerformance.data.data;
+
+    // Handle direct array
+    if (Array.isArray(packagePerformance)) {
+      return packagePerformance;
     }
-    
-    console.warn('Unexpected packagePerformance structure:', packagePerformance);
+
+    console.warn(
+      "Unexpected packagePerformance structure:",
+      packagePerformance
+    );
     return [];
   };
 
@@ -83,15 +97,11 @@ const PackagePerformanceCard: React.FC<PackagePerformanceCardProps> = ({
           </div>
           <div className="statItem">
             <span className="label">Total Revenue</span>
-            <span className="value">
-              {formatCurrency(totalRevenue)}
-            </span>
+            <span className="value">{formatCurrency(totalRevenue)}</span>
           </div>
           <div className="statItem">
             <span className="label">Total Subscriptions</span>
-            <span className="value">
-              {totalSubscriptions}
-            </span>
+            <span className="value">{totalSubscriptions}</span>
           </div>
         </div>
       </div>
@@ -107,8 +117,12 @@ const PackagePerformanceCard: React.FC<PackagePerformanceCardProps> = ({
           </div>
           {packagesArray.map((pkg) => (
             <div key={pkg._id} className="tableRow">
-              <span className="packageName">{pkg.name || pkg.packageName || 'Unknown Package'}</span>
-              <span className="subscriptions">{pkg.activeTenants || pkg.activeSubscriptions || 0}</span>
+              <span className="packageName">
+                {pkg.name || pkg.packageName || "Unknown Package"}
+              </span>
+              <span className="subscriptions">
+                {pkg.activeTenants || pkg.activeSubscriptions || 0}
+              </span>
               <span className="revenue">
                 {formatCurrency(pkg.totalRevenue || pkg.monthlyRevenue || 0)}
               </span>

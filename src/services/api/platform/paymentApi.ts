@@ -17,10 +17,15 @@ export interface ManualPaymentData {
   notes?: string;
 }
 
+// ✅ CORRECTED - Use the new endpoint path
 export const createManualPayment = async (paymentData: ManualPaymentData): Promise<ApiResponse<any>> => {
   try {
-    const response = await axiosInstance.post('/platform/payments/manual', paymentData);
-    return response.data;
+    const response = await axiosInstance.post('/platform/platform-accounting/payments/manual', paymentData); // ✅ CORRECT PATH
+    return {
+      success: response.data.success,
+      data: response.data.data,
+      message: response.data.message
+    };
   } catch (error: any) {
     console.error('Create manual payment error:', error);
     return {
@@ -30,10 +35,15 @@ export const createManualPayment = async (paymentData: ManualPaymentData): Promi
   }
 };
 
+// Keep other payment functions as they are for different endpoints
 export const getPaymentMethods = async (): Promise<ApiResponse<string[]>> => {
   try {
-    const response = await axiosInstance.get('/platform/payments/methods');
-    return response.data;
+    const response = await axiosInstance.get('/platform/payments/methods'); // This might be different
+    return {
+      success: response.data.success,
+      data: response.data.data,
+      message: response.data.message
+    };
   } catch (error: any) {
     console.error('Get payment methods error:', error);
     return {

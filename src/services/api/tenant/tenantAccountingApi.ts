@@ -214,3 +214,18 @@ export const getRevenueRecognitions = async (params = {}): Promise<ApiResponse<a
     return handleApiError(error);
   }
 };
+
+
+// Financial Statements
+export const getFinancialStatement = async (type: string, params = {}): Promise<ApiResponse<any>> => {
+  try {
+    const response = await axiosInstance.get(`/tenant/accounting/financial-statements/${type}`, { params });
+    return {
+      success: true,
+      data: response.data.data || response.data,
+      message: response.data.message || 'Financial statement fetched successfully!',
+    };
+  } catch (error: any) {
+    return handleApiError(error);
+  }
+};

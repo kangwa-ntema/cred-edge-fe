@@ -33,23 +33,37 @@ const TenantPaymentsCard: React.FC<TenantPaymentsCardProps> = ({
     if (Array.isArray(tenantPayments)) {
       return tenantPayments;
     }
+
     
-    if (tenantPayments && Array.isArray(tenantPayments.data)) {
+console.log('Raw tenantPayments data:', tenantPayments);
+  
+  // Handle nested data structure
+  if (tenantPayments && tenantPayments.data) {
+    if (Array.isArray(tenantPayments.data)) {
       return tenantPayments.data;
-    }
-    
-    if (tenantPayments && tenantPayments.data && Array.isArray(tenantPayments.data.data)) {
+    } else if (tenantPayments.data.data && Array.isArray(tenantPayments.data.data)) {
       return tenantPayments.data.data;
     }
-    
+  }
+  
+  // Handle direct array
+  if (Array.isArray(tenantPayments)) {
+    return tenantPayments;
+  }    
     console.warn('Unexpected tenantPayments structure:', tenantPayments);
     return [];
   };
 
   const paymentsArray = getPaymentsArray();
-  const overduePayments = paymentsArray.filter(p => p.overdue || p.status === 'OVERDUE');
-  const pendingPayments = paymentsArray.filter(p => p.status === 'PENDING');
-  const paidPayments = paymentsArray.filter(p => p.status === 'PAID');
+  const overduePayments = paymentsArray.filter(p => 
+    p.status === 'overdue' || p.overdue === true
+  );
+  const pendingPayments = paymentsArray.filter(p => 
+    p.status === 'pending' || p.status === 'PENDING'
+  );
+  const paidPayments = paymentsArray.filter(p => 
+    p.status === 'completed' || p.status === 'paid' || p.status === 'PAID'
+  );
 
   console.log('Processed payments array:', paymentsArray);
   console.log('Overdue payments:', overduePayments);

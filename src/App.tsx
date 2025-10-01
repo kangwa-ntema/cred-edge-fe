@@ -44,6 +44,10 @@ import PaymentSchedulesManagement from "./components/TenantDashboard/LoanManagem
 import CreateLoanApplication from "./components/TenantDashboard/LoanManagement/LoanApplicationsManagement/CreateLoanApplication";
 import ViewLoanApplication from "./components/TenantDashboard/LoanManagement/LoanApplicationsManagement/ViewLoanApplication";
 
+// Tenant Accounting 
+import TenantAccountingDashboard from "./components/TenantDashboard/TenantAccountingDashboard/TenantAccountingDashboard";
+import TenantFinancialHub from "./components/TenantDashboard/TenantAccountingDashboard/TenantFinancialHub/TenantFinancialHub";
+
 // Import Public Pages
 import LandingPage from "./Pages/LandingPage/LandingPage";
 import FeaturesPricingPage from "./Pages/FeaturesPricingPage/FeaturesPricingPage";
@@ -195,8 +199,11 @@ const App: React.FC = () => {
 
             {/* Auth Routes without Navbar */}
             <Route path="/login" element={
+              
               <AuthLayout>
+                <LayoutWithNavbar>
                 <LoginForm />
+              </LayoutWithNavbar>
               </AuthLayout>
             } />
             <Route path="/" element={<RootRedirector />} />
@@ -492,6 +499,27 @@ const App: React.FC = () => {
                 </ProtectedRoute>
               }
             />
+
+            <Route
+  path="/tenant/accounting"
+  element={
+    <ProtectedRoute roles={["tenant_superadmin", "admin", "employee"]}>
+      <LayoutWithNavbar>
+        <TenantAccountingDashboard />
+      </LayoutWithNavbar>
+    </ProtectedRoute>
+  }
+/>
+<Route
+  path="/tenant/accounting/financial-hub"
+  element={
+    <ProtectedRoute roles={["tenant_superadmin", "admin", "employee"]}>
+      <LayoutWithNavbar>
+        <TenantFinancialHub />
+      </LayoutWithNavbar>
+    </ProtectedRoute>
+  }
+/>
 
             {/* Settings Route - Accessible to all authenticated users */}
             <Route

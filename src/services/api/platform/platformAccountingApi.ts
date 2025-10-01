@@ -121,12 +121,17 @@ export const getBalanceSheet = async (asOfDate?: string): Promise<ApiResponse<Fi
 };
 
 // Platform Revenue Report
-export const getPlatformRevenueReport = async (startDate: string, endDate: string): Promise<ApiResponse<RevenueReport>> => {
+// ✅ CORRECTED ENDPOINTS - Use '/platform/platform-accounting' instead of '/platform/accounting'
+export const getPlatformRevenueReport = async (startDate: string, endDate: string): Promise<ApiResponse<any>> => {
   try {
-    const response = await axiosInstance.get('/platform/accounting/revenue-report', {
+    const response = await axiosInstance.get('/platform/platform-accounting/revenue-report', { // ✅ CORRECT PATH
       params: { startDate, endDate }
     });
-    return handleApiResponse(response);
+    return {
+      success: response.data.success,
+      data: response.data.data,
+      message: response.data.message
+    };
   } catch (error: any) {
     console.error('Get revenue report error:', error);
     return {
@@ -136,13 +141,12 @@ export const getPlatformRevenueReport = async (startDate: string, endDate: strin
   }
 };
 
-// Tenant Payment Status - FIXED VERSION
-export const getTenantPaymentStatus = async (): Promise<ApiResponse<TenantPaymentStatus[]>> => {
+export const getTenantPaymentStatus = async (): Promise<ApiResponse<any>> => {
   try {
-    const response = await axiosInstance.get('/platform/accounting/tenant-payments');
+    const response = await axiosInstance.get('/platform/platform-accounting/tenant-payments'); // ✅ CORRECT PATH
     return {
       success: response.data.success,
-      data: response.data.data, // Access the nested data array
+      data: response.data.data,
       message: response.data.message
     };
   } catch (error: any) {
@@ -154,13 +158,13 @@ export const getTenantPaymentStatus = async (): Promise<ApiResponse<TenantPaymen
   }
 };
 
-// Platform Financial Summary - FIXED VERSION
+// ✅ CORRECTED - Platform Financial Summary
 export const getPlatformFinancialSummary = async (): Promise<ApiResponse<any>> => {
   try {
-    const response = await axiosInstance.get('/platform/accounting/financial-summary');
+    const response = await axiosInstance.get('/platform/platform-accounting/financial-summary'); // ✅ CORRECT PATH
     return {
       success: response.data.success,
-      data: response.data, // Data is directly in response.data
+      data: response.data.data,
       message: response.data.message
     };
   } catch (error: any) {
@@ -172,11 +176,15 @@ export const getPlatformFinancialSummary = async (): Promise<ApiResponse<any>> =
   }
 };
 
-// Package Performance
-export const getPackagePerformance = async (): Promise<ApiResponse<PackagePerformance[]>> => {
+// ✅ CORRECTED - Package Performance
+export const getPackagePerformance = async (): Promise<ApiResponse<any>> => {
   try {
-    const response = await axiosInstance.get('/platform/accounting/package-performance');
-    return handleApiResponse(response);
+    const response = await axiosInstance.get('/platform/platform-accounting/package-performance'); // ✅ CORRECT PATH
+    return {
+      success: response.data.success,
+      data: response.data.data,
+      message: response.data.message
+    };
   } catch (error: any) {
     console.error('Get package performance error:', error);
     return {
@@ -186,16 +194,20 @@ export const getPackagePerformance = async (): Promise<ApiResponse<PackagePerfor
   }
 };
 
-// Create Journal Entry
-export const createJournalEntry = async (entryData: Partial<JournalEntry>): Promise<ApiResponse<JournalEntry>> => {
+// ✅ CORRECTED - Manual Payment Creation
+export const createManualPayment = async (paymentData: any): Promise<ApiResponse<any>> => {
   try {
-    const response = await axiosInstance.post('/platform/accounting/journal', entryData);
-    return handleApiResponse(response);
+    const response = await axiosInstance.post('/platform/platform-accounting/payments/manual', paymentData); // ✅ CORRECT PATH
+    return {
+      success: response.data.success,
+      data: response.data.data,
+      message: response.data.message
+    };
   } catch (error: any) {
-    console.error('Create journal entry error:', error);
+    console.error('Create manual payment error:', error);
     return {
       success: false,
-      error: error.response?.data?.error || 'Failed to create journal entry'
+      error: error.response?.data?.error || 'Failed to create manual payment'
     };
   }
 };
@@ -312,6 +324,23 @@ export const deleteCOAAccount = async (accountId: string): Promise<ApiResponse<v
     return {
       success: false,
       error: error.response?.data?.error || 'Failed to delete account'
+    };
+  }
+};
+
+export const createJournalEntry = async (journalData: any): Promise<ApiResponse<any>> => {
+  try {
+    const response = await axiosInstance.post('/platform/platform-accounting/journal', journalData);
+    return {
+      success: response.data.success,
+      data: response.data.data,
+      message: response.data.message
+    };
+  } catch (error: any) {
+    console.error('Create journal entry error:', error);
+    return {
+      success: false,
+      error: error.response?.data?.error || 'Failed to create journal entry'
     };
   }
 };
