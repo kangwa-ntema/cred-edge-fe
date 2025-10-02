@@ -54,6 +54,9 @@ import FeaturesPricingPage from "./Pages/FeaturesPricingPage/FeaturesPricingPage
 import ContactPage from "./Pages/ContactPage/ContactPage";
 import ResponsibleBorrowingPage from "./Pages/ResponsibleBorrowingPage/ResponsibleBorrowingPage";
 
+
+import ScrollToTop from "./components/ScrollToTop/ScrollToTop"
+
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -159,6 +162,7 @@ const RootRedirector = () => {
 const App: React.FC = () => {
   return (
     <Router>
+      <ScrollToTop /> 
       <div className="App">
         <ErrorBoundary>
           <ToastContainer
