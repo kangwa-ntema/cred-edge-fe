@@ -1,6 +1,6 @@
 // fe/src/App.tsx
 
-import "./App.scss";
+//import "./App.scss";
 
 import React, { useEffect } from "react";
 import {
