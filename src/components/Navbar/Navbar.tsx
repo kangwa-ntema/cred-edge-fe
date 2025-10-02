@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../../context/authContext'; // Make sure this path is correct
 import { Menu, X, ChevronDown, ChevronUp } from 'lucide-react';
 import './Navbar.scss';
-import PrimaryLogo from "../../assets/logo-images/cred-edge-nav-logo.svg";
+import PrimaryNavLogo from "../../assets/logo-images/cred-edge-nav-logo.svg";
 
 const Navbar: React.FC = () => {
     const {
@@ -74,7 +74,7 @@ const Navbar: React.FC = () => {
             <header className="navbarContainer">
                 <div className="navbarContent">
                     <Link to="/home" className="navbarLogoLink">
-                        <img src={PrimaryLogo} className="navbarLogo" alt="Credit Edge Logo" />
+                        <img src={PrimaryNavLogo} className="navbarLogo" alt="Credit Edge Logo" />
                     </Link>
                     <div style={{ color: 'white' }}>Loading...</div>
                 </div>
@@ -86,7 +86,7 @@ const Navbar: React.FC = () => {
         <header className="navbarContainer">
             <div className="navbarContent">
                 <Link to="/home" className="navbarLogoLink" onClick={closeAllMenus}>
-                    <img src={PrimaryLogo} className="navbarLogo" alt="Credit Edge Logo" />
+                    <img src={PrimaryNavLogo} className="navbarLogo" alt="Credit Edge Logo" />
                 </Link>
 
                 <button className="menuToggle" onClick={toggleMenu} aria-label="Toggle navigation menu">
