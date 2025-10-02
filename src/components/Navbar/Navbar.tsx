@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../../context/authContext'; // Make sure this path is correct
 import { Menu, X, ChevronDown, ChevronUp } from 'lucide-react';
 import './Navbar.scss';
-import PrimaryNavLogo from "../../assets/logo-images/cred-edge-nav-logo.svg";
+import PrimaryNavLogo from "../../assets/logo-images/cred-edge-nav-logo-2.svg";
 
 const Navbar: React.FC = () => {
     const {
