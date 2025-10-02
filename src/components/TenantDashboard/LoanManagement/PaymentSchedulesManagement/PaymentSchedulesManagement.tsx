@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { loanService } from '../../../../services/api/tenant/loanService';
-import {  type PaymentSchedule, type LoanAccount } from '../../../../types/loanTypes';
+import {  type PaymentSchedule, type LoanAccount } from '../../../../types/loan';
 import { toast } from 'react-toastify';
 
 const PaymentSchedulesManagement: React.FC = () => {

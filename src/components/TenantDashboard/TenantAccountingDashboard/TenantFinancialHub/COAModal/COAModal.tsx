@@ -1,6 +1,7 @@
 // fe/src/components/TenantDashboard/FinancialHub/COAModal/COAModal.tsx
+
 import React, { useState, useEffect } from 'react';
-import { type ChartOfAccount } from '../../../../../../types/accounting';
+import { type ChartOfAccount } from '../../../../../types/accounting';
 
 interface COAModalProps {
   show: boolean;

@@ -7,7 +7,7 @@ import {
   getAllClients,
   type Client,
 } from "../../../../services/api/tenant/clientApi";
-import { type LoanProduct } from "../../../../types/loanTypes";
+import { type LoanProduct } from "../../../../types/loan";
 import { toast } from "react-toastify";
 import './CreateLoanApplication.scss'
 

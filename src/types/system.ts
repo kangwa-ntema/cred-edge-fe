@@ -1,3 +1,5 @@
+// fe/src/types/system.ts
+
 export interface SystemHealth {
   status: 'healthy' | 'degraded' | 'unhealthy';
   uptime: number;

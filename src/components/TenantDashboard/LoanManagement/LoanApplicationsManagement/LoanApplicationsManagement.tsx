@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { loanService } from '../../../../services/api/tenant/loanService';
-import { type LoanApplication, type CreateLoanApplicationData } from '../../../../types/loanTypes';
+import { type LoanApplication, type CreateLoanApplicationData } from '../../../../types/loan';
 import { toast } from 'react-toastify';
 
 import './LoanApplicationsManagement.scss'

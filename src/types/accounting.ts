@@ -1,3 +1,5 @@
+// fe/src/types/accounting.ts
+
 export interface ChartOfAccount {
   _id: string;
   accountNumber: string;
@@ -28,6 +30,7 @@ export interface JournalEntry {
   entryDate: string;
   description: string;
   reference?: string;
+  referenceNumber?: string;
   lines: JournalEntryLine[];
   totalDebit: number;
   totalCredit: number;
@@ -53,22 +56,24 @@ export interface TrialBalanceAccount {
 
 export interface TrialBalance {
   accounts: TrialBalanceAccount[];
-  totals: {
+  totals?: {
     totalDebit: number;
     totalCredit: number;
   };
-  balanceCheck: boolean;
+  totalDebit?: number;
+  totalCredit?: number;
+  balanceCheck?: boolean;
   asOfDate: string;
 }
 
 export interface FinancialStatement {
-  revenue: number;
-  expenses: number;
-  netIncome: number;
-  assets: number;
-  liabilities: number;
-  equity: number;
-  period?: {
+  revenue?: number;
+  expenses?: number;
+  netIncome?: number;
+  assets?: number;
+  liabilities?: number;
+  equity?: number;
+  period?: string | {
     startDate: string;
     endDate: string;
   };
@@ -80,11 +85,27 @@ export interface FinancialStatement {
   equityAccounts?: any[];
 }
 
+export interface GeneralLedgerEntry {
+  _id: string;
+  date: string;
+  journalEntry: string;
+  reference: string;
+  account: string;
+  accountNumber: string;
+  accountName: string;
+  debit: number;
+  credit: number;
+  balance: number;
+  description: string;
+}
+
 export interface RevenueReport {
   revenueByPackage: Array<{
     packageName: string;
     revenue: number;
     percentage?: number;
+    expenses?: number;
+    netIncome?: number;
   }>;
   monthlyRevenue: Array<{
     month: string;

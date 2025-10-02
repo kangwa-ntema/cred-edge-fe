@@ -1,29 +1,6 @@
 // fe/src/types/loanTypes.ts
 
-export interface LoanProduct {
-  _id: string;
-  name: string;
-  code: string;
-  description?: string;
-  minLoanAmount: number;
-  maxLoanAmount: number;
-  minTerm: number;
-  maxTerm: number;
-  interestRate: number;
-  interestMethod: 'flat' | 'reducing' | 'annuity';
-  interestFrequency: 'monthly' | 'quarterly' | 'annually';
-  processingFee: number;
-  processingFeeType: 'fixed' | 'percentage';
-  isActive: boolean;
-  createdBy: {
-    _id: string;
-    firstName: string;
-    lastName: string;
-    email: string;
-  };
-  createdAt: string;
-  updatedAt: string;
-}
+
 
 export interface LoanApplication {
   _id: string;
@@ -145,20 +122,6 @@ export interface LoanStats {
   }>;
 }
 
-export interface CreateLoanProductData {
-  name: string;
-  code: string;
-  description?: string;
-  minLoanAmount: number;
-  maxLoanAmount: number;
-  minTerm: number;
-  maxTerm: number;
-  interestRate: number;
-  interestMethod: 'flat' | 'reducing' | 'annuity';
-  interestFrequency: 'monthly' | 'quarterly' | 'annually';
-  processingFee?: number;
-  processingFeeType?: 'fixed' | 'percentage';
-}
 
 export interface CreateLoanApplicationData {
   clientId: string;
@@ -172,4 +135,54 @@ export interface ApproveLoanApplicationData {
   approvedAmount: number;
   approvedTerm: number;
   approvedInterestRate: number;
+}
+
+export interface LoanProduct {
+  _id: string;
+  name: string;
+  description: string;
+  productCategory: string;
+  status: 'active' | 'inactive' | 'draft';
+  interestRate: number;
+  minLoanAmount: number;
+  maxLoanAmount: number;
+  minTerm: number;
+  maxTerm: number;
+  configuration: {
+    interestMethod: 'flat' | 'reducing';
+    repaymentFrequency: 'monthly' | 'weekly' | 'daily';
+    gracePeriod: number;
+    lateFeePercentage: number;
+  };
+  eligibilityCriteria: {
+    minAge: number;
+    maxAge: number;
+    minIncome: number;
+    employmentTypes: string[];
+  };
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CreateLoanProductData {
+  name: string;
+  description: string;
+  productCategory: string;
+  interestRate: number;
+  minLoanAmount: number;
+  maxLoanAmount: number;
+  minTerm: number;
+  maxTerm: number;
+  configuration: {
+    interestMethod: 'flat' | 'reducing';
+    repaymentFrequency: 'monthly' | 'weekly' | 'daily';
+    gracePeriod: number;
+    lateFeePercentage: number;
+  };
+  eligibilityCriteria: {
+    minAge: number;
+    maxAge: number;
+    minIncome: number;
+    employmentTypes: string[];
+  };
 }

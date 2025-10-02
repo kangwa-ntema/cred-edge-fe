@@ -3,7 +3,7 @@
 // fe/src/services/api/packageService.ts
 import axiosInstance from "../../axiosInstance";
 import { type ApiResponse } from "../../../types";
-
+/* 
 export interface PackageData {
   _id?: string;
   name: string;
@@ -27,7 +27,7 @@ export interface PackageData {
   createdAt?: string;
   updatedAt?: string;
 }
-
+ */
 // Unified response handler
 const handleApiResponse = <T>(response: any): ApiResponse<T> => {
   if (response.data && response.data.success !== undefined) {

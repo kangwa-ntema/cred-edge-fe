@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import TemplateSelection from './TemplateSelection/TemplateSelection';
 import ProductCreationWizard from './ProductCreationWizard/ProductCreationWizard';
 import ProductListView from './ProductListView/ProductListView';
-import { type LoanProduct, type CreateLoanProductData } from '../../../../types/loanTypes';
+import { type LoanProduct, type CreateLoanProductData } from '../../../../types/loan';
 import styles from './LoanProductsManagement.module.scss'; // Updated to module.scss
 
 const LoanProductsManagement: React.FC = () => {
