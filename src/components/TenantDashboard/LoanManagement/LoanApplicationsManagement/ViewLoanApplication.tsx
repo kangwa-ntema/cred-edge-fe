@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { loanService } from '../../../../services/api/tenant/loanService';
-import { type LoanApplication } from '../../../../types/loan';
+import { type LoanApplication } from '../../../../types/loans';
 import { toast } from 'react-toastify';
 
 const ViewLoanApplication: React.FC = () => {

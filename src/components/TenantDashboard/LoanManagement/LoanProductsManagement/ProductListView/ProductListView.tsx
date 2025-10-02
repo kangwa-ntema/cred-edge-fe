@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { loanService } from '../../../../../services/api/tenant/loanService';
-import { type LoanProduct } from '../../../../../types/loan';
+import { type LoanProduct } from '../../../../../types/loans';
 import { toast } from 'react-toastify';
 
 

@@ -1,6 +1,6 @@
 // fe/src/components/TenantDashboard/FinancialHub/JournalEntryModal/JournalEntryModal.tsx
 import React, { useState, useEffect } from 'react';
-import { type JournalEntry, type ChartOfAccount } from '../../../../../../types/accounting';
+import { type JournalEntry, type ChartOfAccount } from '../../../../../types/accounting';
 
 interface JournalEntryModalProps {
   show: boolean;

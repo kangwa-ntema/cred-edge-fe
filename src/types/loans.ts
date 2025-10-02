@@ -1,7 +1,59 @@
-// fe/src/types/loanTypes.ts
+import { Client } from './tenants';
+import { User } from './auth';
 
+// Loan Product Types
+export interface LoanProduct {
+  _id: string;
+  name: string;
+  code: string;
+  description?: string;
+  productCategory: string;
+  status: 'active' | 'inactive' | 'draft';
+  interestRate: number;
+  minLoanAmount: number;
+  maxLoanAmount: number;
+  minTerm: number;
+  maxTerm: number;
+  configuration: {
+    interestMethod: 'flat' | 'reducing' | 'annuity';
+    repaymentFrequency: 'monthly' | 'weekly' | 'daily';
+    gracePeriod: number;
+    lateFeePercentage: number;
+  };
+  eligibilityCriteria: {
+    minAge: number;
+    maxAge: number;
+    minIncome: number;
+    employmentTypes: string[];
+  };
+  createdAt: string;
+  updatedAt: string;
+}
 
+export interface CreateLoanProductData {
+  name: string;
+  description: string;
+  productCategory: string;
+  interestRate: number;
+  minLoanAmount: number;
+  maxLoanAmount: number;
+  minTerm: number;
+  maxTerm: number;
+  configuration: {
+    interestMethod: 'flat' | 'reducing';
+    repaymentFrequency: 'monthly' | 'weekly' | 'daily';
+    gracePeriod: number;
+    lateFeePercentage: number;
+  };
+  eligibilityCriteria: {
+    minAge: number;
+    maxAge: number;
+    minIncome: number;
+    employmentTypes: string[];
+  };
+}
 
+// Loan Application Types
 export interface LoanApplication {
   _id: string;
   applicationNumber: string;
@@ -31,7 +83,6 @@ export interface LoanApplication {
     lastName: string;
     email: string;
   };
-  approvalDate?: string;
   rejectionReason?: string;
   createdBy: {
     _id: string;
@@ -43,6 +94,21 @@ export interface LoanApplication {
   updatedAt: string;
 }
 
+export interface CreateLoanApplicationData {
+  clientId: string;
+  loanProductId: string;
+  requestedAmount: number;
+  requestedTerm: number;
+  purpose?: string;
+}
+
+export interface ApproveLoanApplicationData {
+  approvedAmount: number;
+  approvedTerm: number;
+  approvedInterestRate: number;
+}
+
+// Loan Account Types
 export interface LoanAccount {
   _id: string;
   loanNumber: string;
@@ -86,6 +152,7 @@ export interface LoanAccount {
   updatedAt: string;
 }
 
+// Payment Schedule Types
 export interface PaymentSchedule {
   _id: string;
   loanAccount: string;
@@ -108,6 +175,7 @@ export interface PaymentSchedule {
   createdAt: string;
 }
 
+// Loan Statistics
 export interface LoanStats {
   totalApplications: number;
   activeLoans: number;
@@ -120,69 +188,4 @@ export interface LoanStats {
     date: string;
     status: string;
   }>;
-}
-
-
-export interface CreateLoanApplicationData {
-  clientId: string;
-  loanProductId: string;
-  requestedAmount: number;
-  requestedTerm: number;
-  purpose?: string;
-}
-
-export interface ApproveLoanApplicationData {
-  approvedAmount: number;
-  approvedTerm: number;
-  approvedInterestRate: number;
-}
-
-export interface LoanProduct {
-  _id: string;
-  name: string;
-  description: string;
-  productCategory: string;
-  status: 'active' | 'inactive' | 'draft';
-  interestRate: number;
-  minLoanAmount: number;
-  maxLoanAmount: number;
-  minTerm: number;
-  maxTerm: number;
-  configuration: {
-    interestMethod: 'flat' | 'reducing';
-    repaymentFrequency: 'monthly' | 'weekly' | 'daily';
-    gracePeriod: number;
-    lateFeePercentage: number;
-  };
-  eligibilityCriteria: {
-    minAge: number;
-    maxAge: number;
-    minIncome: number;
-    employmentTypes: string[];
-  };
-  createdAt: string;
-  updatedAt: string;
-}
-
-export interface CreateLoanProductData {
-  name: string;
-  description: string;
-  productCategory: string;
-  interestRate: number;
-  minLoanAmount: number;
-  maxLoanAmount: number;
-  minTerm: number;
-  maxTerm: number;
-  configuration: {
-    interestMethod: 'flat' | 'reducing';
-    repaymentFrequency: 'monthly' | 'weekly' | 'daily';
-    gracePeriod: number;
-    lateFeePercentage: number;
-  };
-  eligibilityCriteria: {
-    minAge: number;
-    maxAge: number;
-    minIncome: number;
-    employmentTypes: string[];
-  };
 }

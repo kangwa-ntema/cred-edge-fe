@@ -2,6 +2,28 @@
 
 import { type ApiResponse } from '../../../types';
 
+export interface ApiResponse<T = any> {
+  data: T
+  message?: string
+  success: boolean
+}
+
+export const handleApiResponse = async <T>(
+  response: Response
+): Promise<ApiResponse<T>> => {
+  const data = await response.json()
+  
+  if (!response.ok) {
+    throw new Error(data.message || 'API request failed')
+  }
+  
+  return {
+    data: data.data || data,
+    message: data.message,
+    success: data.success !== false
+  }
+}
+
 export const handleApiError = (error: any) => {
   console.error("Full API Error:", error);
   
@@ -71,3 +93,5 @@ export const apiCall = async <T>(
     return createApiResponse(false, undefined, errorInfo.message, errorInfo.message);
   }
 };
+
+

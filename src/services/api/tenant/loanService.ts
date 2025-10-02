@@ -10,7 +10,7 @@ import {
   type CreateLoanProductData,
   type CreateLoanApplicationData,
   type ApproveLoanApplicationData 
-} from '../../../types/loan';
+} from '../../../types/loans';
 
 export const loanService = {
   // Loan Products

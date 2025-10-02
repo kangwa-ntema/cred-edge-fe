@@ -2,7 +2,7 @@
 
 import './ProductCreationWizard.scss';
 import React, { useState } from 'react';
-import { type LoanProduct, type CreateLoanProductData } from '../../../../../types/loan';
+import { type LoanProduct, type CreateLoanProductData } from '../../../../../types/loans';
 
 // Import all step components
 import AmountTermStep from '../wizard-steps/AmountTermStep';
