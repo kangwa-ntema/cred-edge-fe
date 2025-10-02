@@ -1,39 +1,8 @@
 /* src/Pages/LandingPage/LandingPage.scss */
 
-// --- New Color Variables from User ---
-$clr-dark-green: #27474e;
-$clr-kelly-green: #27474e;
-$clr-asparagus: hsl(8, 75%, 65%);
-$clr-avocado: #8ab9b5ff;
-$clr-dark-moss-green: #8ab9b5ff;
-$clr-hunter-green: #e0fbfcff;
-$clr-charcoal-gray: hsl(180, 4%, 5%);
-$clr-honey-dew: hsl(158, 100%, 96%);
-$clr-white-smoke: hsl(0, 0%, 96%);
-$clr-onyx: hsl(0, 0%, 24%);
+@import '../../styles/variables.scss';
+@import '../../styles/fonts.scss';
 
-// --- Mapped Semantic Color Variables ---
-$primary-color: $clr-kelly-green;         // Main interactive elements, strong accents
-$secondary-color: $clr-hunter-green;      // Darker shade for gradients/hover states
-$accent-color: $clr-asparagus;            // A complementary green accent for icons/highlights
-
-$text-dark: $clr-onyx;                    // Primary dark text
-$text-medium: lighten($clr-onyx, 20%);    // Slightly lighter dark text
-$text-light: lighten($clr-onyx, 40%);     // Light dark text
-$text-white: #ffffff;                    // Pure white text (as no equivalent light HSL was provided for this specific use)
-
-$bg-light: $clr-white-smoke;              // General page background
-$bg-lighter-grey: $clr-honey-dew;         // Section background or subtle card background
-$bg-white: #ffffff;                      // Pure white background for cards (as no direct HSL was perfect)
-
-$border-light: darken($clr-white-smoke, 5%); // Light border for cards/sections
-$border-lighter: darken($clr-white-smoke, 2%); // Even lighter border
-$border-dashed: darken($clr-white-smoke, 10%); // Dashed border for dividers
-
-$success-color: $clr-kelly-green;         // For success messages/icons
-$error-color: #e74c3c;                    // Keeping original red for error, as no red HSL was provided
-
-$font-family-inter: 'Inter', sans-serif;
 
 // --- Mixins ---
 @mixin respond-to($breakpoint) {
@@ -61,7 +30,7 @@ $font-family-inter: 'Inter', sans-serif;
 /* --- Hero Section --- */
 .landingPageHero {
     background: linear-gradient(to right, $primary-color, $secondary-color);
-    background-image: url("../../assets/images/mountain-range-2.jpg");
+    //background-image: url("../../assets/images/mountain-range-2.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -152,6 +121,7 @@ $font-family-inter: 'Inter', sans-serif;
     text-align: center;
 
     &.whyChooseUs {
+        font-family: $ff-sec;
         background-color: $bg-white;
         border-bottom: 1px solid $border-light;
     }
@@ -226,7 +196,7 @@ $font-family-inter: 'Inter', sans-serif;
 
     p {
         font-size: 1rem;
-        color: $text-light;
+        color: $text-dark;
         line-height: 1.6;
     }
 }

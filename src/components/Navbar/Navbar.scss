@@ -1,5 +1,6 @@
 // fe/src/components/Navbar/Navbar.scss
 @import '../../styles/variables.scss';
+@import '../../styles/fonts.scss';
 
 // --- Mixins ---
 @mixin respond-to($breakpoint) {
@@ -18,7 +19,7 @@
     right: 0;
     width: 100%;
     z-index: 1000;
-    font-family: $font-family-inter;
+    font-family: $ff-primary;
     height: $nav-height;
     display: flex;
     align-items: center;

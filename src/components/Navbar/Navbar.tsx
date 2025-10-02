@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../../context/authContext'; // Make sure this path is correct
 import { Menu, X, ChevronDown, ChevronUp } from 'lucide-react';
 import './Navbar.scss';
-import PrimaryLogo from "../../assets/logo-images/cred-edge-sec-logo.svg";
+import PrimaryLogo from "../../assets/logo-images/cred-edge-nav-logo.svg";
 
 const Navbar: React.FC = () => {
     const {
@@ -96,9 +96,7 @@ const Navbar: React.FC = () => {
                 <nav className={`navbarNav ${isMenuOpen ? 'open' : ''}`}>
                     <ul className="navbarNavList">
                         {/* Always visible public links */}
-                        <li className="navbarNavItem">
-                            <Link to="/home" onClick={closeAllMenus}>Home</Link>
-                        </li>
+                       
                         <li className="navbarNavItem">
                             <Link to="/features-pricing" onClick={closeAllMenus}>Features & Pricing</Link>
                         </li>

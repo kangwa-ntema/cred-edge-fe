@@ -14,7 +14,7 @@ const LandingPage = () => {
       <div className="landingPageHero">
         <div className="landingPageContent">
           <h1 className="landingPageHeadline">
-            Cred Edge: Intelligent Empowerment in Lending.
+            Intelligent Empowerment in Lending.
           </h1>
           <p className="landingPageSubheadline">
             Streamline your operations, gain deep insights, and drive growth

@@ -4,6 +4,12 @@
 // SASS VARIABLES (For media queries, calculations, etc.)
 // ==========================================================================
 
+@import './fonts.scss';
+
+// FONTS
+$ff-primary: 'NataSans-Regular';
+$ff-sec: 'LibreBaskerville-Bold';
+
 // Breakpoint variables for Sass
 $sm: 576px;
 $md: 768px;
@@ -38,16 +44,38 @@ $clr-warning-msg: hsl(0, 90%, 40%);
 $clr-pending: #f59e0b;
 $clr-paid: #10b981;
 
+$clr-dark-green: hsl(191, 33%, 10%);
+$clr-kelly-green: #27474e;
+$clr-asparagus: hsl(8, 75%, 65%);
+$clr-avocado: #8ab9b5;
+$clr-dark-moss-green: #8ab9b5;
+$clr-hunter-green: #e0fbfc;
+$clr-charcoal-gray: hsl(180, 4%, 5%);
+$clr-honey-dew: hsl(158, 100%, 96%);
+$clr-white-smoke: hsl(0, 0%, 96%);
+$clr-onyx: hsl(0, 0%, 24%);
+
+
 $primary-color: $clr-pickled-bluewood;
 $secondary-color: $clr-summer-green;
 $accent-color: $clr-sunrise-orange;
 
 $text-dark: $clr-black-pearl;
 $text-light: $clr-white-smoke;
+$text-medium: $clr-white-smoke;
 $text-white: #ffffff;
 
 $bg-dark: $clr-black-pearl;
 $bg-dark-hover: lighten($clr-black-pearl, 10%);
+
+$bg-light: $clr-white-smoke;              // General page background
+$bg-lighter-grey: $clr-honey-dew;         // Section background or subtle card background
+$bg-white: #ffffff;   
+
+$border-light: darken($clr-white-smoke, 5%); // Light border for cards/sections
+$border-lighter: darken($clr-white-smoke, 2%); // Even lighter border
+$border-dashed: darken($clr-white-smoke, 10%); // Dashed border for dividers
+
 
 $font-family-inter: 'Inter', sans-serif;
 $nav-height: 70px;
@@ -161,15 +189,11 @@ $padding-x-mobile: 1rem;
   white-space: nowrap;
 }
 
-$clr-dark-green: hsl(191, 33%, 10%);
-$clr-kelly-green: #27474e;
-$clr-asparagus: hsl(8, 75%, 65%);
-$clr-avocado: #8ab9b5;
-$clr-dark-moss-green: #8ab9b5;
-$clr-hunter-green: #e0fbfc;
-$clr-charcoal-gray: hsl(180, 4%, 5%);
-$clr-honey-dew: hsl(158, 100%, 96%);
-$clr-white-smoke: hsl(0, 0%, 96%);
-$clr-onyx: hsl(0, 0%, 24%);
 
 // --- Mapped Semantic Color Variables ---
+
+
+
+
+$success-color: $clr-kelly-green;         // For success messages/icons
+$error-color: #e74c3c;                    // Keeping original red for error, as no red HSL was provided

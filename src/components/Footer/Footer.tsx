@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin, Linkedin, Twitter, Facebook } from 'lucide-react';
 import './Footer.scss';
 
-import PrimaryLogo from "../../assets/logo-images/cred-edge-icon-logo-2.svg";
+import PrimaryLogo from "../../assets/logo-images/cred-edge-footer-logo.svg";
 
 const Footer: React.FC = () => {
     return (

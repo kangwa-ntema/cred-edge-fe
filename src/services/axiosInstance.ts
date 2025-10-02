@@ -1,14 +1,8 @@
 // fe/src/services/axiosInstance.ts
 import axios from 'axios';
-import { API_BASE_URL } from '../config/api';
+import { API_CONFIG, isMobileDebug } from '../config/api';
 
-const axiosInstance = axios.create({
-  baseURL: API_BASE_URL,
-  timeout: 30000,
-  headers: {
-    'Content-Type': 'application/json',
-  },
-});
+const axiosInstance = axios.create(API_CONFIG);
 
 // Enhanced request interceptor
 axiosInstance.interceptors.request.use(
@@ -18,8 +12,18 @@ axiosInstance.interceptors.request.use(
       config.headers.Authorization = `Bearer ${token}`;
     }
     
-    // Add request ID for tracking
+    // Add environment context
+    config.headers['X-Environment'] = import.meta.env.MODE;
     config.headers['X-Request-ID'] = Date.now().toString();
+    
+    // Log for mobile debugging
+    if (isMobileDebug()) {
+      console.log('🔄 API Request:', {
+        url: config.url,
+        method: config.method,
+        baseURL: config.baseURL
+      });
+    }
     
     return config;
   },
@@ -28,23 +32,32 @@ axiosInstance.interceptors.request.use(
 
 // Enhanced response interceptor
 axiosInstance.interceptors.response.use(
-  (response) => response,
+  (response) => {
+    // Log successful mobile requests
+    if (isMobileDebug()) {
+      console.log('✅ API Response:', {
+        url: response.config.url,
+        status: response.status
+      });
+    }
+    return response;
+  },
   (error) => {
+    // Enhanced error logging
+    console.error('🚨 API Error:', {
+      url: error.config?.url,
+      method: error.config?.method,
+      status: error.response?.status,
+      message: error.message,
+      environment: import.meta.env.MODE
+    });
+    
     if (error.response?.status === 401) {
       localStorage.removeItem('userToken');
-      // Use window.location instead of router for reliability
       if (!window.location.pathname.includes('/login')) {
         window.location.href = '/login?redirect=' + encodeURIComponent(window.location.pathname);
       }
     }
-    
-    // Enhanced error logging
-    console.error('API Error:', {
-      url: error.config?.url,
-      method: error.config?.method,
-      status: error.response?.status,
-      message: error.message
-    });
     
     return Promise.reject(error);
   }

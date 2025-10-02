@@ -1,24 +1,7 @@
 // fe/src/components/Footer/Footer.scss
 
-// Use the same color variables as Navbar for consistency
-$clr-dark-green: hsl(191, 33%, 10%);
-$clr-kelly-green: #27474e;
-$clr-asparagus: hsl(8, 75%, 65%);
-$clr-avocado: #8ab9b5;
-$clr-dark-moss-green: #8ab9b5;
-$clr-hunter-green: #e0fbfc;
-$clr-charcoal-gray: hsl(180, 4%, 5%);
-$clr-honey-dew: hsl(158, 100%, 96%);
-$clr-white-smoke: hsl(0, 0%, 96%);
-$clr-onyx: hsl(0, 0%, 24%);
-
-$primary-color: $clr-kelly-green;
-$secondary-color: $clr-dark-moss-green;
-$text-light: $clr-white-smoke;
-$text-dark: $clr-onyx;
-$bg-dark: $clr-dark-green;
-
-$font-family-inter: 'Inter', sans-serif;
+@import '../../styles/fonts.scss';
+@import '../../styles/variables.scss';
 
 .footerContainer {
     background-color: $bg-dark;
@@ -79,7 +62,7 @@ $font-family-inter: 'Inter', sans-serif;
     }
 
     .footerLogo {
-        height: 50px;
+        height: 10rem;
         width: auto;
     }
 
