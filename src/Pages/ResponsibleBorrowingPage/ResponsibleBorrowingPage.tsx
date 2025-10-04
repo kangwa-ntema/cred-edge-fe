@@ -8,17 +8,7 @@ const ResponsibleBorrowingPage = () => {
   return (
     <div className="responsible-borrowing-container">
       {/* Back to Dashboard Link */}
-      <div className="back-link-wrapper">
-        <Link
-          to="/mainDashboard" // Adjust this path if your main dashboard is different
-          className="back-to-dashboard-link"
-        >
-          <svg className="back-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
-          </svg>
-          Back to Dashboard
-        </Link>
-      </div>
+      
 
       <div className="content-card">
         <h1 className="main-headline">

@@ -8,13 +8,16 @@
 
 // FONTS
 $ff-primary: 'NataSans-Regular';
+$ff-primary-italic: 'NataSans-Regular';
 $ff-sec: 'LibreBaskerville-Bold';
+$ff-tenant-title: 'NataSans-Bold';
 
 // Breakpoint variables for Sass
 $sm: 576px;
 $md: 768px;
 $lg: 922px;
 $xl: 1200px;
+$xxl: 1400px;
 $xsm: 400px;
 
 // Color variables for Sass calculations
@@ -23,11 +26,12 @@ $clr-pickled-bluewood: hsl(191, 33%, 23%);
 $clr-sunrise-orange: hsl(8, 75%, 65%);
 $clr-summer-green: hsl(175, 25%, 63%);
 $clr-ice: hsl(182, 82%, 93%);
-$clr-jagged-ice: #b9e8ea;
+$clr-jagged-ice: hsl(182, 54%, 82%);
 $clr-charcoal-gray: hsl(180, 4%, 5%);
 $clr-honey-dew: hsl(158, 100%, 96%);
 $clr-white-smoke: hsl(0, 0%, 96%);
 $clr-onyx: hsl(0, 0%, 24%);
+$clr-white: hsl(0, 0%, 100%);
 
 // Neutral colors for Sass
 $clr-neutral-100: hsl(0, 0%, 5%);
@@ -41,8 +45,8 @@ $clr-neutral-700: hsl(0, 0%, 95%);
 // Status colors for Sass
 $clr-success-msg: hsl(110, 90%, 50%);
 $clr-warning-msg: hsl(0, 90%, 40%);
-$clr-pending: #f59e0b;
-$clr-paid: #10b981;
+$clr-pending: hsl(38, 92%, 50%);
+$clr-paid: hsl(160, 84%, 39%);
 
 $clr-dark-green: hsl(191, 33%, 10%);
 $clr-kelly-green: #27474e;

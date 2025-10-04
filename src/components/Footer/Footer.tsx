@@ -45,6 +45,15 @@ const Footer: React.FC = () => {
                     </ul>
                 </div>
 
+                {/* Middle Section: Legal Links */}
+                <div className="footerSection footerLegal">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><Link to="/privacy-policy">Privacy Policy</Link></li>
+                        <li><Link to="/terms-and-conditions">Terms & Conditions</Link></li>
+                    </ul>
+                </div>
+
                 {/* Middle Section: Contact Information */}
                 <div className="footerSection footerContact">
                     <h3>Contact Info</h3>

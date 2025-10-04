@@ -5,7 +5,7 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useAuth } from "../../../context/authContext";
 import { getAllTenantUsers, deleteTenantUser, type TenantUser } from "../../../services/api/tenant/tenantUserApi";
-//import './TenantUserManagementDashboard.scss';
+import './TenantUserManagementDashboard.scss';
 
 const TenantUserManagementDashboard = () => {
     const { user: currentUser, hasRole } = useAuth();
@@ -33,19 +33,26 @@ const TenantUserManagementDashboard = () => {
             setLoading(true);
             setError(null);
             try {
-                const filters: any = {};
-                if (roleFilter !== "all") {
-                    filters.role = roleFilter;
-                }
-                if (isActiveFilter !== "all") {
-                    filters.isActive = isActiveFilter === "true";
-                }
+                // ✅ CORRECTED: Build filters object and use it directly
+                const filters = {
+                    ...(roleFilter !== "all" && { role: roleFilter }),
+                    ...(isActiveFilter !== "all" && { 
+                        isActive: isActiveFilter // Send as string, backend will convert
+                    })
+                };
+
+                console.log("🔍 Frontend sending filters:", filters); // Debug log
 
                 const response = await getAllTenantUsers(filters);
+
+                console.log("📥 API Response:", response); // Debug log
 
                 if (response.success && response.data) {
                     setUsers(response.data.users || []);
                     setOverallSummary(response.data.overallSummary || {});
+                    
+                    // Debug: Check if filtering worked
+                    console.log(`👥 Users after filtering: ${response.data.users?.length}`);
                 } else {
                     if (response.error?.includes('Tenant context')) {
                         setError("Authentication issue: Please log out and log in again");

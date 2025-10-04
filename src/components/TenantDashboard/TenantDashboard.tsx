@@ -1,25 +1,29 @@
 // fe/src/components/TenantDashboard/TenantDashboard.tsx
 
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { useAuth } from '../../context/authContext';
-import './TenantDashboard.scss';
+import React from "react";
+import { Link } from "react-router-dom";
+import { useAuth } from "../../context/authContext";
+import "./TenantDashboard.scss";
 
 const TenantDashboard = () => {
   const { user, logout } = useAuth();
-  
+
+  console.log();
+
   return (
-    <div className="dashboardContainer">
-      <div className="dashboardHeader">
-        <h1 className="dashboardTitle">Tenant Dashboard</h1>
+    <div className="TenantDashboardContainer">
+      <h1 className="tenantDashboardTitle">{user?.tenant.companyName}</h1>
+      <div className="TenantDashboardHeader">
+        <h2 className="dashboardTitle">Tenant Dashboard</h2>
         <button onClick={logout} className="logoutButton">
           Log Out
         </button>
       </div>
 
       <p className="dashboardSubtitle">
-        Welcome, <span className="usernameHighlight">{user?.username}</span>!
+        <span className="usernameHighlight">Welcome {user?.firstName}!</span>
         Manage your loan business operations from here.
+      <p className="tenantUserRole">Role: {user?.role}</p>
       </p>
 
       <div className="dashboardCardGrid">
@@ -50,7 +54,6 @@ const TenantDashboard = () => {
             <p className="cardDescription">
               Manage loan products, applications, accounts, and disbursements.
             </p>
-            
           </div>
         </Link>
 
@@ -59,7 +62,8 @@ const TenantDashboard = () => {
           <div className="dashboardCard">
             <h2 className="cardTitle">Payments & Accounting</h2>
             <p className="cardDescription">
-              Process payments, track transactions, and manage financial records.
+              Process payments, track transactions, and manage financial
+              records.
             </p>
           </div>
         </Link>

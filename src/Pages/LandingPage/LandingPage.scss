@@ -1,312 +1,282 @@
 /* src/Pages/LandingPage/LandingPage.scss */
 
-@import '../../styles/variables.scss';
-@import '../../styles/fonts.scss';
-
+@import "../../styles/variables.scss";
+@import "../../styles/fonts.scss";
 
 // --- Mixins ---
 @mixin respond-to($breakpoint) {
-    @if $breakpoint == desktop-lg {
-        @media (max-width: 1200px) { @content; }
-    } @else if $breakpoint == laptop {
-        @media (max-width: 992px) { @content; }
-    } @else if $breakpoint == tablet {
-        @media (max-width: 768px) { @content; }
-    } @else if $breakpoint == mobile {
-        @media (max-width: 480px) { @content; }
+  @if $breakpoint == mobile {
+    @media (max-width: 480px) {
+      @content;
     }
+  } @else if $breakpoint == tablet {
+    @media (max-width: 768px) {
+      @content;
+    }
+  } @else if $breakpoint == laptop {
+    @media (max-width: 992px) {
+      @content;
+    }
+  } @else if $breakpoint == desktop {
+    @media (max-width: 1200px) {
+      @content;
+    }
+  }
 }
 
-// --- Base Styles ---
+// --- Base Styles (Mobile First) ---
 .landingPageContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: $bg-light;
-    font-family: $font-family-inter;
-    color: $text-dark;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: $bg-light;
+  font-family: $ff-primary;
+  color: $text-dark;
+  width: 100%;
 }
+
+/* --- Content Wrapper (Matches Navbar) --- */
+
 
 /* --- Hero Section --- */
 .landingPageHero {
-    background: linear-gradient(to right, $primary-color, $secondary-color);
-    //background-image: url("../../assets/images/mountain-range-2.jpg");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-blend-mode: screen;
-    color: $text-white;
-    padding: 6rem 2rem;
-    width: 100%;
-    text-align: center;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to right, $primary-color, $secondary-color);
+  color: $clr-ice;
+  padding: 4rem 0;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  padding: 1rem;
+  min-height: 60vh;
 
-    .landingPageContent {
-        max-width: 1000px;
-        margin: 0 auto;
+
+
+
+  .landingPageHeadline {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+
+  }
+
+  .landingPageSubheadline {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+    line-height: 1.5;
+  }
+
+  .landingPageCallToAction {
+    margin-top: 1.5rem;
+
+    .ctaText {
+      font-size: 0.9rem;
+      color: rgba($text-white, 0.9);
+      margin-bottom: 0.8rem;
+
+      &.mt-4 {
+        margin-top: 1.5rem;
+      }
     }
-
-    .landingPageHeadline {
-        font-size: 3.5rem;
-        font-weight: 700;
-        margin-bottom: 1.5rem;
-        line-height: 1.1;
-        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
-    }
-
-    .landingPageSubheadline {
-        font-size: 1.5rem;
-        margin-bottom: 3rem;
-        opacity: 0.9;
-    }
-
-    .landingPageCallToAction {
-        margin-top: 2rem;
-
-        .ctaText {
-            font-size: 1.1rem;
-            color: rgba($text-white, 0.9);
-            margin-bottom: 1rem;
-        }
-    }
+  }
 }
 
 .landingPageBtn {
-    border: none;
-    padding: 0.9rem 2.5rem;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease,
+    box-shadow 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  margin: 0.5rem;
+  min-width: 200px;
+  font-weight: 600;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+
+
+  &.primaryBtn {
+    background-color: $accent-color;
+    color: $text-white;
+
+    &:hover {
+      background-color: darken($accent-color, 10%);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+    }
+  }
+
+  &.secondaryBtn {
+    background-color: rgba($text-white, 0.2);
+    color: $text-white;
+    border: 2px solid rgba($text-white, 0.6);
+
+    &:hover {
+      background-color: rgba($text-white, 0.3);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+    }
+  }
+
+  &.largeBtn {
+    padding: 1rem 2rem;
     font-size: 1.2rem;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-    text-decoration: none;
-    display: inline-block;
-    margin: 0.75rem;
-    min-width: 220px;
-    font-weight: 600;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-
-    &.primaryBtn {
-        background-color: $accent-color; // Using the accent for the main CTA
-        color: $text-white;
-
-        &:hover {
-            background-color: darken($accent-color, 10%);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
-        }
-    }
-
-    &.secondaryBtn {
-        background-color: rgba($text-white, 0.2);
-        color: $text-white;
-        border: 2px solid rgba($text-white, 0.6);
-
-        &:hover {
-            background-color: rgba($text-white, 0.3);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
-        }
-    }
-
-    &.largeBtn {
-        padding: 1.2rem 3rem;
-        font-size: 1.5rem;
-    }
+  }
 }
 
 /* --- General Section Styling --- */
 .landingPageSection {
-    padding: 5rem 2rem;
-    width: 100%;
-    text-align: center;
+  padding: 3rem 0;
+  width: 100%;
+  text-align: center;
 
-    &.whyChooseUs {
-        font-family: $ff-sec;
-        background-color: $bg-white;
-        border-bottom: 1px solid $border-light;
-    }
 
-    &.loanTypeSection {
-        background-color: $bg-lighter-grey;
-    }
 
-    &.finalCtaSection {
-        background: linear-gradient(to left, $secondary-color, $primary-color);
-        color: $text-white;
-        padding: 6rem 2rem;
+  &.whyChooseUs {
+    font-family: $ff-primary;
+    background-color: $bg-white;
+    border-bottom: 1px solid $border-light;
+  }
 
-        .sectionHeadline {
-            color: $text-white;
-        }
-        .sectionSubheadline {
-            color: rgba($text-white, 0.9);
-        }
-    }
+  &.technologySecuritySection {
+    background-color: $bg-lighter-grey;
+  }
 
-    .sectionContent {
-        max-width: 1200px;
-        margin: 0 auto;
-    }
+  &.finalCtaSection {
+    background: linear-gradient(to left, $secondary-color, $primary-color);
+    color: $text-white;
+    padding: 4rem 0;
+  }
 
-    .sectionHeadline {
-        font-size: 2.8rem;
-        font-weight: 700;
-        color: $text-dark;
-        margin-bottom: 1.5rem;
-    }
+  .sectionHeadline {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: $text-dark;
+    margin-bottom: 1rem;
+  }
 
-    .sectionSubheadline {
-        font-size: 1.2rem;
-        color: $text-medium;
-        margin-bottom: 3rem;
-    }
+  .sectionSubheadline {
+    font-size: 1rem;
+    color: $text-medium;
+    margin-bottom: 2rem;
+    line-height: 1.5;
+  }
 }
 
 /* --- Feature Grid --- */
 .featureGrid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
-    margin-top: 3rem;
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
 }
 
 .featureItem {
-    background-color: $bg-white;
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border: 1px solid $border-light;
+  background-color: $bg-white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid $border-light;
 
-    &:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  }
+
+  h3 {
+    font-size: 1.3rem;
+    color: $primary-color;
+    margin-bottom: 0.8rem;
+
+    i {
+      margin-right: 0.8rem;
+      color: $accent-color;
     }
+  }
 
-    h3 {
-        font-size: 1.6rem;
-        color: $primary-color;
-        margin-bottom: 1rem;
+  p {
+    font-size: 0.9rem;
+    color: $text-dark;
+    line-height: 1.5;
 
-        i {
-            margin-right: 0.8rem;
-            color: $accent-color; // Icon accent color
-        }
-    }
 
-    p {
-        font-size: 1rem;
-        color: $text-dark;
-        line-height: 1.6;
-    }
+  }
 }
 
-/* --- Loan Type Section --- */
-.loanTypeGrid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 2rem;
-    margin-top: 3rem;
+.technologySecuritySection{
+  padding-inline: 1rem;
+
+  .techSecurityContent{
+    .techSecurityHeadline{
+      font-size: clamp(1.5em, 2vw, 2em);
+    }
+  }
 }
 
-.loanTypeCard {
-    background-color: $bg-white;
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border: 1px solid darken($border-light, 5%); // Slightly darker border
-
-    &:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-    }
-
-    .loanTypeIcon {
-        font-size: 3rem;
-        color: $primary-color;
-        margin-bottom: 1rem;
-    }
-
-    h3 {
-        font-size: 1.5rem;
-        color: $text-dark;
-        margin-bottom: 0.8rem;
-    }
-
-    p {
-        font-size: 0.95rem;
-        color: $text-light;
-        line-height: 1.5;
-    }
+.techSecuritySubheadline{
+  margin-top: 1rem;
 }
 
-
-/* --- Responsive Adjustments --- */
-@include respond-to(laptop) {
-    .landingPageHeadline {
-        font-size: 2.8rem;
-    }
-    .landingPageSubheadline {
-        font-size: 1.3rem;
-    }
-    .sectionHeadline {
-        font-size: 2.2rem;
-    }
+/* --- Tech Feature Grid --- */
+.techFeatureGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  padding: 1rem;
 }
 
-@include respond-to(tablet) {
-    .landingPageHero,
-    .landingPageSection {
-        padding: 4rem 1.5rem;
+.techFeatureItem {
+  background-color: $bg-white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid $border-light;
+
+
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  }
+
+  .techIcon {
+    font-size: 2.5rem;
+    color: $primary-color;
+    margin-bottom: 1rem;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+    color: $primary-color;
+    margin-bottom: 0.8rem;
+
+    @include respond-to(tablet) {
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
     }
-    .landingPageHeadline {
-        font-size: 2.2rem;
-    }
-    .landingPageSubheadline {
-        font-size: 1.1rem;
-        margin-bottom: 2rem;
-    }
-    .landingPageBtn {
-        padding: 0.7rem 1.8rem;
-        font-size: 1.1rem;
-        width: 100%;
-        margin-left: 0;
-        margin-right: 0;
-    }
-    .sectionHeadline {
-        font-size: 1.8rem;
-    }
-    .sectionSubheadline {
-        font-size: 1rem;
-        margin-bottom: 2rem;
-    }
-    .featureGrid, .loanTypeGrid {
-        grid-template-columns: 1fr;
-    }
-    .landingPageBtn.largeBtn {
-        padding: 1rem 2rem;
-        font-size: 1.2rem;
-    }
+  }
+
+  p {
+    font-size: 0.9rem;
+    color: $text-dark;
+    line-height: 1.5;
+  }
 }
 
-@include respond-to(mobile) {
-    .landingPageHeadline {
-        font-size: 1.8rem;
-    }
-    .landingPageSubheadline {
-        font-size: 0.9rem;
-    }
-    .featureItem, .loanTypeCard {
-        padding: 1.2rem;
-    }
-    .featureItem h3, .loanTypeCard h3 {
-        font-size: 1.3rem;
-    }
-    .featureItem p, .loanTypeCard p {
-        font-size: 0.85rem;
-    }
-    .loanTypeIcon {
-        font-size: 2.5rem;
-    }
+.finalSectionHeadline{
+  font-size: clamp(1.5em, 2vw, 2em);
+  margin-bottom: 1rem;
 }
+

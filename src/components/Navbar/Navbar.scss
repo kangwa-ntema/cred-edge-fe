@@ -4,8 +4,28 @@
 
 // --- Mixins ---
 @mixin respond-to($breakpoint) {
-    @if $breakpoint == tablet {
-        @media (max-width: 850px) { @content; }
+    @if $breakpoint == mobile {
+        @media (max-width: 480px) { @content; }
+    } @else if $breakpoint == tablet {
+        @media (max-width: 768px) { @content; }
+    } @else if $breakpoint == laptop {
+        @media (max-width: 992px) { @content; }
+    }
+}
+
+/* --- Content Wrapper (Matches Landing Page) --- */
+.contentWrapper {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 $padding-x-mobile;
+
+    @include respond-to(tablet) {
+        padding: 0 $padding-x-tablet;
+    }
+
+    @include respond-to(laptop) {
+        padding: 0 $padding-x-desktop;
     }
 }
 
@@ -24,7 +44,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0 $padding-x-desktop;
 }
 
 .navbarContent {
@@ -32,7 +51,8 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    max-width: 1200px;
+    max-width: $xl;
+    padding: 1rem;
 }
 
 .navbarLogoLink {
@@ -58,7 +78,6 @@
     border: none;
     color: $text-white;
     cursor: pointer;
-    padding: 0.5rem;
     
     &:focus {
         outline: none;
@@ -215,10 +234,6 @@
 
 /* --- Mobile Styles --- */
 @include respond-to(tablet) {
-    .navbarContainer {
-        padding: 0 $padding-x-mobile;
-    }
-    
     .menuToggle {
         display: block;
     }
@@ -315,10 +330,6 @@
 }
 
 @include respond-to(mobile) {
-    .navbarContainer {
-        padding: 0 0.5rem;
-    }
-    
     .navbarLogo {
         height: 40px;
     }

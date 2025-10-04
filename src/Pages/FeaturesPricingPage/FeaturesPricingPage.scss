@@ -1,205 +1,279 @@
-/* src/Pages/FeaturesPricingPage/FeaturePricingPage.scss */
+// fe/src/FeaturesPricingPage/FeaturesPricingPage.scss
+@import "../../styles/variables.scss";
+@import "../../styles/fonts.scss";
 
-// --- New Color Variables ---
-$clr-black-pearl: hsl(191, 33%, 10%);
-$clr-pickled-bluewood: hsl(191, 33%, 23%);
-$clr-sunrise-orange: hsl(8, 75%, 65%);
-$clr-summer-green: hsl(175, 25%, 63%);
-$clr-ice: hsl(182, 82%, 93%);
-$clr-charcoal-gray: hsl(180, 4%, 5%);
-$clr-honey-dew: hsl(158, 100%, 96%);
-$clr-white-smoke: hsl(0, 0%, 96%);
-$clr-onyx: hsl(0, 0%, 24%);
-
-// --- Mapped Semantic Color Variables ---
-$primary-color: $clr-pickled-bluewood;    // Main interactive elements, strong accents
-$secondary-color: $clr-summer-green;      // Darker shade for gradients/hover states
-$accent-color: $clr-sunrise-orange;       // A complementary green accent for highlights
-
-$text-dark: $clr-onyx;                    // Primary dark text
-$text-medium: lighten($clr-onyx, 20%);    // Slightly lighter dark text
-$text-light: lighten($clr-onyx, 40%);     // Light dark text
-$text-white: #ffffff;                    // Pure white text
-$bg-light: $clr-white-smoke;              // General page background
-$bg-white: #ffffff;                       // Pure white background for form card
-$bg-lighter-grey: $clr-ice;               // A new, lighter grey color from the new color palette
-$border-light: darken($clr-white-smoke, 5%); // Light border
-$border-medium: darken($clr-white-smoke, 15%); // Medium border
-
-$font-family-inter: 'Inter', sans-serif;
-
-// --- Mixins (Updated for Mobile-First) ---
+// --- Mixins ---
 @mixin respond-to($breakpoint) {
-@if $breakpoint == desktop-lg {
-@media (min-width: 1201px) { @content; }
-} @else if $breakpoint == laptop {
-@media (min-width: 993px) { @content; }
-} @else if $breakpoint == tablet {
-@media (min-width: 769px) { @content; }
-}
-}
-
-/* General Styling */
-.pricing-page {
-font-family: $font-family-inter;
-color: $text-dark;
-background-color: $bg-light;
-padding: 4rem 1rem;
-display: flex;
-flex-direction: column;
-align-items: center;
-min-height: 100vh;
-box-sizing: border-box;
+  @if $breakpoint == mobile {
+    @media (max-width: 480px) {
+      @content;
+    }
+  } @else if $breakpoint == tablet {
+    @media (max-width: 768px) {
+      @content;
+    }
+  } @else if $breakpoint == laptop {
+    @media (max-width: 992px) {
+      @content;
+    }
+  } @else if $breakpoint == desktop {
+    @media (max-width: 1200px) {
+      @content;
+    }
+  }
 }
 
-.pricing-header-container {
-text-align: center;
-margin-bottom: 3rem;
-max-width: 800px;
-padding: 0 1rem;
+.featuresPricingPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: $bg-light;
+  font-family: $ff-primary;
+  color: $text-dark;
+  min-height: 100vh;
+  width: 100%;
+  padding-bottom: 3rem;
 }
 
-.pricing-header {
-font-size: 2.5rem;
-font-weight: 700;
-margin-bottom: 0.5rem;
-color: $primary-color;
+/* --- Hero Section --- */
+.pricingHero {
+  background: linear-gradient(to right, $primary-color, $secondary-color);
+  color: $text-white;
+  padding: 4rem 1rem;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+
+  .pricingHeaderContainer {
+    max-width: $xl;
+    margin: 0 auto;
+  }
+
+  .pricingHeader {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+  }
+
+  .pricingSubtitle {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+    line-height: 1.5;
+  }
 }
 
-.pricing-subtitle {
-font-size: 1.1rem;
-color: $text-medium;
+/* --- Pricing Cards Container --- */
+.pricingCardsContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  width: 100%;
+  max-width: $xl;
+  margin: 3rem auto;
+  padding: 0 2rem;
+  box-sizing: border-box;
+
+  @include respond-to(mobile) {
+    grid-template-columns: 1fr;
+    padding: 0 1rem;
+    gap: 1.5rem;
+  }
 }
 
-.pricing-cards-container {
-display: grid;
-grid-template-columns: 1fr;
-gap: 2rem;
-width: 100%;
-max-width: 1200px;
-justify-content: center;
-align-items: stretch;
+/* --- Pricing Card --- */
+.pricingCard {
+  background-color: $bg-white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid $border-light;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  }
+
+  &.featured {
+    border: 2px solid $accent-color;
+    transform: scale(1.02);
+    
+    &:hover {
+      transform: scale(1.02) translateY(-5px);
+    }
+  }
+
+  .bestForBadge {
+    background: $accent-color;
+    color: $text-white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .packageName {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: $primary-color;
+    margin-bottom: 0.5rem;
+    text-align: center;
+  }
+
+  .packageDescription {
+    font-size: 0.9rem;
+    color: $text-dark;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    line-height: 1.4;
+  }
+
+  .priceContainer {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid $border-light;
+
+    .price {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: $primary-color;
+      display: block;
+    }
+
+    .pricePeriod {
+      font-size: 0.9rem;
+      color: $text-medium;
+      display: block;
+      margin-top: 0.25rem;
+    }
+  }
+
+  .featuresList {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2rem 0;
+    flex-grow: 1;
+
+    .featureItem {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+      padding: 0.5rem 0;
+
+      .featureIcon {
+        color: $accent-color;
+        flex-shrink: 0;
+        margin-top: 0.1rem;
+      }
+
+      .featureName {
+        font-size: 0.9rem;
+        color: $text-dark;
+        line-height: 1.4;
+      }
+    }
+  }
+
+  .getStartedBtn {
+    background-color: $accent-color;
+    color: $text-white;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease,
+      box-shadow 0.3s ease;
+    text-align: center;
+    width: 100%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+
+    &:hover {
+      background-color: darken($accent-color, 10%);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+    }
+  }
 }
 
-.pricing-card {
-background-color: $bg-white;
-border: 1px solid $border-light;
-border-radius: 1rem;
-padding: 2rem;
-display: flex;
-flex-direction: column;
-align-items: center;
-text-align: center;
-transition: transform 0.3s ease, box-shadow 0.3s ease;
-position: relative;
-overflow: hidden;
+/* --- Messages --- */
+.errorMessage,
+.loadingMessage,
+.infoMessage {
+  text-align: center;
+  padding: 2rem;
+  margin: 2rem auto;
+  max-width: 600px;
+  background: $bg-white;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
 }
 
-.pricing-card:hover {
-transform: translateY(-5px);
-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+.errorMessage {
+  border-left: 4px solid #e74c3c;
 }
 
-.pricing-card.is-best {
-border: 2px solid $accent-color;
-box-shadow: 0 0 15px rgba(255, 126, 80, 0.4);
+.infoMessage {
+  border-left: 4px solid $secondary-color;
 }
 
-.best-for-badge {
-position: absolute;
-top: 1rem;
-right: 1rem;
-background-color: $accent-color;
-color: $text-white;
-padding: 0.25rem 0.75rem;
-border-radius: 9999px;
-font-size: 0.8rem;
-font-weight: 600;
+.loadingMessage {
+  border-left: 4px solid $accent-color;
 }
 
-.package-name {
-font-size: 1.8rem;
-font-weight: 600;
-color: $primary-color;
-margin-bottom: 0.5rem;
+.retryBtn {
+  background-color: $accent-color;
+  color: $text-white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 50px;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: darken($accent-color, 10%);
+  }
 }
 
-.package-description {
-color: $text-medium;
-margin-bottom: 1.5rem;
-min-height: 60px;
-}
+/* --- Responsive Design --- */
+@include respond-to(mobile) {
+  .pricingHero {
+    padding: 3rem 1rem;
+    
+    .pricingHeader {
+      font-size: 2rem;
+    }
+  }
 
-.price-container {
-display: flex;
-flex-direction: column;
-align-items: center;
-margin-bottom: 1.5rem;
-}
-
-.price {
-font-size: 3rem;
-font-weight: 700;
-color: $primary-color;
-line-height: 1;
-}
-
-.price-period {
-color: $text-light;
-margin-top: 0.25rem;
-}
-
-.features-list {
-list-style: none;
-padding: 0;
-margin: 0;
-width: 100%;
-text-align: left;
-flex-grow: 1;
-}
-
-.feature-item {
-display: flex;
-align-items: center;
-margin-bottom: 0.75rem;
-}
-
-.feature-icon {
-color: $secondary-color;
-margin-right: 0.75rem;
-}
-
-.feature-name {
-font-weight: 500;
-color: $text-dark;
-}
-
-.get-started-btn {
-background-color: $accent-color;
-color: $text-white;
-padding: 0.75rem 2rem;
-border: none;
-border-radius: 9999px;
-font-size: 1rem;
-font-weight: 600;
-cursor: pointer;
-transition: background-color 0.3s ease, transform 0.2s ease;
-margin-top: 2rem;
-width: 100%;
-text-transform: uppercase;
-letter-spacing: 0.05em;
-}
-
-.get-started-btn:hover {
-background-color: lighten($clr-sunrise-orange, 10%);
-transform: translateY(-2px);
-}
-
-.loading-message, .error-message, .info-message {
-text-align: center;
-padding: 2rem;
-background-color: $bg-lighter-grey;
-border-radius: 0.5rem;
-margin-top: 2rem;
-color: $text-dark;
+  .pricingCard {
+    padding: 1.5rem;
+    
+    .packageName {
+      font-size: 1.3rem;
+    }
+    
+    .priceContainer .price {
+      font-size: 2rem;
+    }
+  }
 }

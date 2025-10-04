@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { getPackages } from "../../services/api/platform/packageApi";
-import { FaCheckCircle, FaUsers, FaLaptop, FaDatabase } from 'react-icons/fa';
+import { CheckCircle, Users, Laptop, Database, Star } from "lucide-react";
 import './FeaturesPricingPage.scss';
 
 const FeaturesPricingPage = () => {
@@ -60,64 +60,71 @@ const FeaturesPricingPage = () => {
     };
 
     return (
-        <div className="pricing-page">
-            <div className="pricing-header-container">
-                <h1 className="pricing-header">Simple, Transparent Pricing</h1>
-                <p className="pricing-subtitle">
-                    Choose a plan that fits your business needs. All packages are designed to grow with you.
-                </p>
+        <div className="featuresPricingPage">
+            <div className="pricingHero">
+                <div className="pricingHeaderContainer">
+                    <h1 className="pricingHeader">Simple, Transparent Pricing</h1>
+                    <p className="pricingSubtitle">
+                        Choose a plan that fits your business needs. All packages are designed to grow with you.
+                    </p>
+                </div>
             </div>
             
             {error && (
-                <div className="error-message">
+                <div className="errorMessage">
                     <p>{error}</p>
-                    <button onClick={fetchPackaging} className="retry-btn">
+                    <button onClick={fetchPackaging} className="retryBtn">
                         Try Again
                     </button>
                 </div>
             )}
             
             {loading ? (
-                <div className="loading-message">Loading pricing packages...</div>
+                <div className="loadingMessage">Loading pricing packages...</div>
             ) : !Array.isArray(packagingList) ? (
-                <div className="error-message">
+                <div className="errorMessage">
                     <p>Invalid data format received from server.</p>
                 </div>
             ) : packagingList.length === 0 ? (
-                <div className="info-message">No packages found.</div>
+                <div className="infoMessage">No packages found.</div>
             ) : (
-                <div className="pricing-cards-container">
+                <div className="pricingCardsContainer">
                     {packagingList.map((pkg) => (
-                        <div key={pkg._id} className="pricing-card">
-                            {pkg.bestFor && <span className="best-for-badge">{pkg.bestFor}</span>}
-                            <h2 className="package-name">{pkg.name}</h2>
-                            <p className="package-description">{pkg.description}</p>
+                        <div key={pkg._id} className={`pricingCard ${pkg.bestFor ? 'featured' : ''}`}>
+                            <h2 className="packageName">{pkg.name}</h2>
+                            <p className="packageDescription">{pkg.description}</p>
+                            {pkg.bestFor && (
+                                <div className="bestForBadge">
+                                    <Star size={24} />
+                                    <span>{pkg.bestFor}</span>
+                                </div>
+                            )}
                             {renderPrice(pkg.monthlyPrice, pkg.annualPrice)}
-                            <ul className="features-list">
+                            <ul className="featuresList">
                                 {safeFeatures(pkg).map((feature, index) => (
-                                    <li key={index} className="feature-item">
-                                        <FaCheckCircle className="feature-icon" />
-                                        <span className="feature-name">{feature.name}</span>
+                                    <li key={index} className="featureItem">
+                                        <CheckCircle size={20} className="featureIcon" />
+                                        <span className="featureName">{feature.name}</span>
                                     </li>
                                 ))}
-                                <li className="feature-item">
-                                    <FaUsers className="feature-icon" />
-                                    <span className="feature-name">
+                                <li className="featureItem">
+                                    <Users size={20} className="featureIcon" />
+                                    <span className="featureName">
                                         {pkg.limits?.maxClients === -1 ? 'Unlimited' : `${pkg.limits?.maxClients || 0}`} Clients
                                     </span>
                                 </li>
-                                <li className="feature-item">
-                                    <FaLaptop className="feature-icon" />
-                                    <span className="feature-name">
+                                <li className="featureItem">
+                                    <Laptop size={20} className="featureIcon" />
+                                    <span className="featureName">
                                         {pkg.limits?.maxLoans === -1 ? 'Unlimited' : `${pkg.limits?.maxLoans || 0}`} Loans
                                     </span>
                                 </li>
-                                <li className="feature-item">
-                                    <FaDatabase className="feature-icon" />
-                                    <span className="feature-name">{pkg.limits?.storageGB || 0} GB Storage</span>
+                                <li className="featureItem">
+                                    <Database size={20} className="featureIcon" />
+                                    <span className="featureName">{pkg.limits?.storageGB || 0} GB Storage</span>
                                 </li>
                             </ul>
-                            <button className="get-started-btn">Get Started</button>
+                            <button className="getStartedBtn">Get Started</button>
                         </div>
                     ))}
                 </div>

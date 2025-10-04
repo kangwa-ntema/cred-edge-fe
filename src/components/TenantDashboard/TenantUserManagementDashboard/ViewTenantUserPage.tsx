@@ -5,7 +5,7 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import { getTenantUserById, deleteTenantUser, changeTenantUserPassword } from '../../../services/api/tenant/tenantUserApi';
 import { useAuth } from '../../../context/authContext';
 import { toast } from 'react-toastify';
-import './TenantUserManagement.scss';
+import './TenantUserManagementDashboard.scss';
 
 const ViewTenantUserPage = () => {
     const { id } = useParams();

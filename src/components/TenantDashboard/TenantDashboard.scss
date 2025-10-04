@@ -1,73 +1,80 @@
 // fe/src/components/TenantDashboard/TenantDashboard.scss
-.dashboardContainer {
-  padding: 2rem;
-  max-width: 1400px;
+@use "sass:color";
+@import "../../styles/fonts.scss";
+@import "../../styles/variables.scss";
+
+.TenantDashboardContainer {
+  padding: 4rem 1rem;
+  max-width: $xl;
   margin: 0 auto;
-  background: #f8fafc;
   min-height: 100vh;
+  font-family: $ff-primary;
+
+  .tenantDashboardTitle {
+    font-size: clamp(2em, 5vw, 5em);
+    text-align: center;
+    font-family: $ff-tenant-title;
+    margin-bottom: 1rem;
+    color: $clr-pickled-bluewood;
+  }
 }
 
-.dashboardHeader {
+.TenantDashboardHeader {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: flex-start;
   margin-bottom: 2rem;
-  background: white;
-  padding: 1.5rem;
+  background: $clr-white;
+  padding: 1rem;
   border-radius: 12px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
 
-  .headerLeft {
-    .dashboardTitle {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      font-size: 2rem;
-      font-weight: 700;
-      color: #1e293b;
-      margin: 0 0 0.5rem 0;
+  .dashboardTitle {
+    font-size: clamp(1.25em, 2.5vw, 2.5em);
+    font-weight: 700;
+    color: $clr-pickled-bluewood;
+    margin: 0 0 0.5rem 0;
 
-      .titleIcon {
-        color: #3b82f6;
-      }
+    .titleIcon {
+      color: #3b82f6;
     }
 
     .tenantName {
-      color: #64748b;
+      color: $clr-black-pearl;
       font-size: 1.1rem;
       margin: 0;
       font-weight: 500;
     }
   }
+  .logoutButton {
+    background: $clr-sunrise-orange;
+    color: white;
+    line-height: 1;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: background 0.2s;
+    width: auto;
 
-  .headerRight {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-
-    .userInfo {
-      color: #475569;
-      font-size: 0.95rem;
-
-      strong {
-        color: #1e293b;
-      }
-    }
-
-    .logoutButton {
-      background: #ef4444;
+    &:hover {
       color: white;
-      border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: 500;
-      transition: background 0.2s;
-
-      &:hover {
-        background: #dc2626;
-      }
+      background: color.adjust($clr-sunrise-orange, $lightness: -10%);
     }
+  }
+}
+
+.dashboardSubtitle {
+  margin: 0 0 1.5rem 0;
+  display: flex;
+  flex-direction: column;
+  padding-inline: 1rem;
+
+  .tenantUserRole {
+    margin-block: 0.5rem;
+    font-style: italic;
+    text-decoration: underline;
   }
 }
 
@@ -101,10 +108,18 @@
       font-size: 1.5rem;
       color: white;
 
-      &.clients { background: linear-gradient(135deg, #10b981, #059669); }
-      &.loans { background: linear-gradient(135deg, #3b82f6, #2563eb); }
-      &.applications { background: linear-gradient(135deg, #f59e0b, #d97706); }
-      &.projects { background: linear-gradient(135deg, #8b5cf6, #7c3aed); }
+      &.clients {
+        background: linear-gradient(135deg, #10b981, #059669);
+      }
+      &.loans {
+        background: linear-gradient(135deg, #3b82f6, #2563eb);
+      }
+      &.applications {
+        background: linear-gradient(135deg, #f59e0b, #d97706);
+      }
+      &.projects {
+        background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+      }
     }
 
     .statInfo {
@@ -260,13 +275,8 @@
   }
 
   .dashboardHeader {
-    flex-direction: column;
     gap: 1rem;
     text-align: center;
-
-    .headerRight {
-      justify-content: center;
-    }
   }
 
   .dashboardStats {

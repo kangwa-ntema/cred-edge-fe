@@ -1,13 +1,25 @@
-// fe/src/pages/LandingPage/LandingPage.tsx
+// src/Pages/LandingPage/LandingPage.tsx
 
-// src/Pages/LandingPage/LandingPage.jsx
 import React from "react";
 import { Link } from "react-router-dom";
-import { useAuth } from "../../context/authContext"; // Import useAuth to check auth status
-import "./LandingPage.scss"; // Ensure you have this SCSS file
+import { useAuth } from "../../context/authContext";
+import { 
+  ArrowLeftRight, 
+  TrendingUp, 
+  Shield, 
+  Server, 
+  Lock, 
+  Code,
+  Users,
+  Car,
+  Landmark,
+  FileText,
+  Sparkles
+} from "lucide-react";
+import "./LandingPage.scss";
 
 const LandingPage = () => {
-  const { isAuthenticated } = useAuth(); // Get authentication status
+  const { isAuthenticated, user } = useAuth();
 
   return (
     <section className="landingPageContainer">
@@ -22,16 +34,13 @@ const LandingPage = () => {
           </p>
 
           <div className="landingPageCallToAction">
-            {/* Conditional rendering for authenticated vs. unauthenticated users */}
             {isAuthenticated ? (
-              // If already logged in, show a link to the dashboard
-              <Link to="/mainDashboard">
+              <Link to={user?.role === 'platform_superadmin' ? "/platform/dashboard" : "/tenant/dashboard"}>
                 <button className="landingPageBtn primaryBtn">
                   Go to Dashboard
                 </button>
               </Link>
             ) : (
-              // If not logged in, show options to Login or Sign Up/Start Trial
               <>
                 <p className="ctaText">Already managing with Cred Edge?</p>
                 <Link to="/login">
@@ -54,13 +63,11 @@ const LandingPage = () => {
       {/* Section 2: Why Choose Cred Edge? */}
       <div className="landingPageSection whyChooseUs">
         <div className="sectionContent">
-          <h2 className="sectionHeadline">
-            Why Choose Cred Edge
-          </h2>
+          <h2 className="sectionHeadline">Why Choose Cred Edge</h2>
           <div className="featureGrid">
             <div className="featureItem">
               <h3>
-                <i className="fas fa-arrows-alt-h"></i> Unify & Simplify
+                <ArrowLeftRight size={24} className="featureIcon" /> Unify & Simplify
               </h3>
               <p>
                 Bring all your loan operations, client management, and
@@ -70,7 +77,7 @@ const LandingPage = () => {
             </div>
             <div className="featureItem">
               <h3>
-                <i className="fas fa-chart-line"></i> Drive Financial Growth
+                <TrendingUp size={24} className="featureIcon" /> Drive Financial Growth
               </h3>
               <p>
                 Gain real-time insights with comprehensive reporting. Make
@@ -78,19 +85,9 @@ const LandingPage = () => {
                 and profitability.
               </p>
             </div>
-            {/* <div className="featureItem">
-              <h3>
-                <i className="fas fa-cogs"></i> Flexible & Adaptive
-              </h3>
-              <p>
-                Designed to handle diverse lending products – from
-                collateralized and payslip-backed to auto loans – all within a
-                single, powerful application.
-              </p>
-            </div> */}
             <div className="featureItem">
               <h3>
-                <i className="fas fa-shield-alt"></i> Built for Trust
+                <Shield size={24} className="featureIcon" /> Built for Trust
               </h3>
               <p>
                 Benefit from robust activity logging and a secure multi-tenant
@@ -103,18 +100,18 @@ const LandingPage = () => {
 
       {/* NEW Section: Technology & Security */}
       <div className="landingPageSection technologySecuritySection">
-        <div className="sectionContent">
-          <h2 className="sectionHeadline">
+        <div className="techSecurityContent">
+          <h2 className="techSecurityHeadline">
             Cutting-Edge Technology & Unwavering Security
           </h2>
-          <p className="sectionSubheadline">
+          <p className="techSecuritySubheadline">
             Cred Edge is built on a foundation of modern, secure, and scalable
             technologies, ensuring your data is always protected and your
             operations run smoothly.
           </p>
           <div className="techFeatureGrid">
             <div className="techFeatureItem">
-              <i className="fas fa-server techIcon"></i>
+              <Server size={32} className="techIcon" />
               <h3>Robust Cloud Infrastructure</h3>
               <p>
                 Powered by leading cloud providers for unparalleled reliability,
@@ -122,7 +119,7 @@ const LandingPage = () => {
               </p>
             </div>
             <div className="techFeatureItem">
-              <i className="fas fa-lock techIcon"></i>
+              <Lock size={32} className="techIcon" />
               <h3>Bank-Grade Security</h3>
               <p>
                 Data encryption in transit and at rest, regular security audits,
@@ -131,7 +128,7 @@ const LandingPage = () => {
               </p>
             </div>
             <div className="techFeatureItem">
-              <i className="fas fa-shield-alt techIcon"></i>
+              <Shield size={32} className="techIcon" />
               <h3>Multi-Tenant Data Isolation</h3>
               <p>
                 Our architecture ensures complete separation of your company's
@@ -139,7 +136,7 @@ const LandingPage = () => {
               </p>
             </div>
             <div className="techFeatureItem">
-              <i className="fas fa-code techIcon"></i>
+              <Code size={32} className="techIcon" />
               <h3>Modern Development Stack</h3>
               <p>
                 Built with React, Node.js, and MongoDB for a responsive,
@@ -150,8 +147,8 @@ const LandingPage = () => {
         </div>
       </div>
 
-      {/* Section 3: Call to Action for Different Loan Types (Conceptual) */}
-     {/*  <div className="landingPageSection loanTypeSection">
+      {/* Section 3: Call to Action for Different Loan Types */}
+      <div className="landingPageSection loanTypeSection">
         <div className="sectionContent">
           <h2 className="sectionHeadline">Tailored for Your Loan Products</h2>
           <p className="sectionSubheadline">
@@ -160,7 +157,7 @@ const LandingPage = () => {
           </p>
           <div className="loanTypeGrid">
             <div className="loanTypeCard">
-              <i className="fas fa-hands-helping loanTypeIcon"></i>
+              <Users size={32} className="loanTypeIcon" />
               <h3>Personal & Micro Loans</h3>
               <p>
                 Efficiently manage standard personal lending with automated
@@ -168,7 +165,7 @@ const LandingPage = () => {
               </p>
             </div>
             <div className="loanTypeCard">
-              <i className="fas fa-car loanTypeIcon"></i>
+              <Car size={32} className="loanTypeIcon" />
               <h3>Vehicle-Backed Loans</h3>
               <p>
                 Dedicated tools for managing auto loans, including vehicle
@@ -176,7 +173,7 @@ const LandingPage = () => {
               </p>
             </div>
             <div className="loanTypeCard">
-              <i className="fas fa-money-check-alt loanTypeIcon"></i>
+              <Landmark size={32} className="loanTypeIcon" />
               <h3>Collateralized Lending</h3>
               <p>
                 Robust features for tracking and managing assets used as loan
@@ -184,7 +181,7 @@ const LandingPage = () => {
               </p>
             </div>
             <div className="loanTypeCard">
-              <i className="fas fa-file-invoice-dollar loanTypeIcon"></i>
+              <FileText size={32} className="loanTypeIcon" />
               <h3>Payslip-Backed Loans</h3>
               <p>
                 Streamline the verification and management of loans secured by
@@ -200,19 +197,17 @@ const LandingPage = () => {
             </div>
           </div>
         </div>
-      </div> */}
+      </div>
 
       {/* Section 4: Final Call to Action */}
       <div className="landingPageSection finalCtaSection">
         <div className="sectionContent">
-          <h2 className="sectionHeadline">Ready to Get Started?</h2>
+          <h2 className="finalSectionHeadline">Ready to Get Started?</h2>
           <p className="sectionSubheadline">
             Join the growing number of financial institutions transforming their
             operations with Cred Edge.
           </p>
           <Link to="/contact">
-            {" "}
-            {/* Changed from /signup to /contact for manual onboarding */}
             <button className="landingPageBtn primaryBtn largeBtn">
               Request a Demo Today
             </button>

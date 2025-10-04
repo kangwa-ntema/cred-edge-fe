@@ -55,7 +55,8 @@ import LandingPage from "./Pages/LandingPage/LandingPage";
 import FeaturesPricingPage from "./Pages/FeaturesPricingPage/FeaturesPricingPage";
 import ContactPage from "./Pages/ContactPage/ContactPage";
 import ResponsibleBorrowingPage from "./Pages/ResponsibleBorrowingPage/ResponsibleBorrowingPage";
-
+import PrivacyPolicy from "./Pages/PrivacyPolicy/PrivacyPolicy"; // Add this import
+import TermsAndConditions from "./Pages/TermsAndConditions/TermsAndConditions"; // Add this import
 
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop"
 
@@ -200,6 +201,17 @@ const App: React.FC = () => {
             <Route path="/responsibleBorrowingPage" element={
               <PublicLayout>
                 <ResponsibleBorrowingPage />
+              </PublicLayout>
+            } />
+
+            <Route path="/privacy-policy" element={
+              <PublicLayout>
+                <PrivacyPolicy />
+              </PublicLayout>
+            } />
+            <Route path="/terms-and-conditions" element={
+              <PublicLayout>
+                <TermsAndConditions />
               </PublicLayout>
             } />
 

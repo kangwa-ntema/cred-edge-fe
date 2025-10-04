@@ -1,37 +1,6 @@
 /* Base styles */
-:root {
-  --clr-black-pearl: hsl(191, 33%, 10%);
-  --clr-pickled-bluewood: hsl(191, 33%, 23%);
-  --clr-sunrise-orange: hsl(8, 75%, 65%);
-  --clr-summer-green: hsl(175, 25%, 63%);
-  --clr-ice: hsl(182, 82%, 93%);
-  --clr-charcoal-gray: hsl(180, 4%, 5%);
-  --clr-honey-dew: hsl(158, 100%, 96%);
-  --clr-white-smoke: hsl(0, 0%, 96%);
-  --clr-onyx: hsl(0, 0%, 24%);
-  --clr-success-msg: hsl(110, 90%, 50%);
-  --clr-warning-msg: hsl(0, 90%, 40%);
-  --clr-neutral-100: hsl(0, 0%, 5%);
-  --clr-neutral-200: hsl(0, 0%, 20%);
-  --clr-neutral-300: hsl(0, 0%, 35%);
-  --clr-neutral-400: hsl(0, 0%, 50%);
-  --clr-neutral-500: hsl(0, 0%, 65%);
-  --clr-neutral-600: hsl(0, 0%, 80%);
-  --clr-neutral-700: hsl(0, 0%, 95%);
-  --max-width-xsm: 400px;
-  --max-width-sm: 576px;
-  --max-width-md: 768px;
-  --max-width-lg: 922px;
-  --max-width-xl: 1200px;
-}
-
-body {
-  font-family: Arial, sans-serif;
-  background-color: var(--clr-black-pearl);
-  color: var(--clr-white-smoke);
-  margin: 0;
-  padding: 0;
-}
+@import '../../styles/fonts.scss';
+@import '../../styles/variables.scss';
 
 .loginFormContainer {
   display: flex;
@@ -40,7 +9,8 @@ body {
   justify-content: center;
   padding: 4rem 1rem; // Increased padding instead of full height
   min-height: auto; // Remove full viewport height
-  background-color: var(--clr-white-smoke);
+  background-color: $clr-white-smoke;
+  font-family: $ff-primary;
 }
 
 .loginFormCard {
@@ -57,7 +27,7 @@ body {
   font-size: 1.875rem;
   font-weight: bold;
   text-align: center;
-  color: var(--clr-summer-green);
+  color: $clr-pickled-bluewood;
   margin-bottom: 1.5rem;
 }
 
@@ -75,7 +45,7 @@ body {
 label {
   font-size: 0.875rem;
   font-weight: 500;
-  color: var(--clr-ice);
+  color: $clr-pickled-bluewood;
   margin-bottom: 0.25rem;
 }
 
@@ -85,8 +55,8 @@ input {
   border-radius: 0.375rem;
   border: 1px solid var(--clr-neutral-300);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-  background-color: var(--clr-charcoal-gray);
-  color: var(--clr-white-smoke);
+  background-color: transparent;
+  color: $clr-pickled-bluewood;
 
   &:focus {
     outline: none;
@@ -105,9 +75,10 @@ input {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
   font-size: 0.875rem;
   font-weight: 500;
-  color: var(--clr-white-smoke);
+  color: $clr-white-smoke;
   background-color: var(--clr-sunrise-orange);
   transition: background-color 0.2s ease-in-out;
+  cursor: pointer;
 
   &:hover:not(:disabled) {
     background-color: hsl(8, 75%, 55%);

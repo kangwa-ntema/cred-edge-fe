@@ -1,239 +1,256 @@
-// fe/src/Pages/ContactPage/ContactPage.scss
-
-/* src/Pages/ContactPage/ContactPage.scss */
-
-// --- Color Variables (Consistent across the app) ---
-$clr-dark-green: hsl(107, 56%, 10%);
-$clr-kelly-green: hsl(94, 47%, 48%);
-$clr-asparagus: hsl(91, 52%, 40%);
-$clr-avocado: hsl(92, 52%, 36%);
-$clr-dark-moss-green: hsl(86, 64%, 22%);
-$clr-hunter-green: hsl(129, 34%, 30%);
-$clr-charcoal-gray: hsl(180, 4%, 5%);
-$clr-honey-dew: hsl(158, 100%, 96%);
-$clr-white-smoke: hsl(0, 0%, 96%);
-$clr-onyx: hsl(0, 0%, 24%);
-
-// --- Mapped Semantic Color Variables ---
-$primary-color: $clr-kelly-green;         // Main interactive elements, strong accents
-$secondary-color: $clr-hunter-green;      // Darker shade for gradients/hover states
-$accent-color: $clr-asparagus;            // A complementary green accent for icons/highlights (like Request Demo btn)
-
-$text-dark: $clr-onyx;                    // Primary dark text
-$text-medium: lighten($clr-onyx, 20%);    // Slightly lighter dark text
-$text-light: lighten($clr-onyx, 40%);     // Light dark text
-$text-white: #ffffff;                    // Pure white text
-
-$bg-light: $clr-white-smoke;              // General page background
-$bg-white: #ffffff;                      // Pure white background for form card
-$bg-info-card: $clr-honey-dew;            // Background for contact info cards
-
-$border-light: darken($clr-white-smoke, 5%); // Light border
-$border-medium: darken($clr-white-smoke, 15%); // Medium border
-
-$font-family-inter: 'Inter', sans-serif;
+// src/Pages/ContactPage/ContactPage.scss
+@import "../../styles/variables.scss";
+@import "../../styles/fonts.scss";
 
 // --- Mixins ---
 @mixin respond-to($breakpoint) {
-    @if $breakpoint == desktop-lg {
-        @media (max-width: 1200px) { @content; }
-    } @else if $breakpoint == laptop {
-        @media (max-width: 992px) { @content; }
-    } @else if $breakpoint == tablet {
-        @media (max-width: 768px) { @content; }
-    } @else if $breakpoint == mobile {
-        @media (max-width: 480px) { @content; }
+  @if $breakpoint == mobile {
+    @media (max-width: 480px) {
+      @content;
     }
+  } @else if $breakpoint == tablet {
+    @media (max-width: 768px) {
+      @content;
+    }
+  } @else if $breakpoint == laptop {
+    @media (max-width: 992px) {
+      @content;
+    }
+  } @else if $breakpoint == desktop {
+    @media (max-width: 1200px) {
+      @content;
+    }
+  }
 }
 
-/* --- Contact Page Container --- */
 .contactPageContainer {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    min-height: calc(100vh - 120px); /* Adjust based on navbar/footer height */
-    background-color: $bg-light;
-    padding: 3rem 2rem;
-    font-family: $font-family-inter;
-    color: $text-dark;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: $bg-light;
+  font-family: $ff-primary;
+  color: $text-dark;
+  min-height: 100vh;
+  width: 100%;
+  padding: 2rem 1rem;
+
+  @include respond-to(tablet) {
+    padding: 3rem 1rem;
+  }
 }
 
 .contactPageContent {
-    max-width: 1000px;
-    width: 100%;
-    background-color: $bg-white;
-    padding: 3rem;
-    border-radius: 12px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-    text-align: center;
+  max-width: $xl;
+  width: 100%;
+  margin: 0 auto;
+}
 
-    .contactPageHeadline {
-        font-size: 2.8rem;
-        font-weight: 700;
-        color: $text-dark;
-        margin-bottom: 1rem;
-        line-height: 1.2;
-    }
+.contactPageHeadline {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: $primary-color;
+  text-align: center;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+  
+  @include respond-to(tablet) {
+    font-size: 3rem;
+  }
+}
 
-    .contactPageSubheadline {
-        font-size: 1.2rem;
-        color: $text-medium;
-        margin-bottom: 3rem;
-    }
+.contactPageSubheadline {
+  font-size: 1.1rem;
+  color: $text-medium;
+  text-align: center;
+  margin-bottom: 3rem;
+  line-height: 1.6;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  
+  @include respond-to(tablet) {
+    font-size: 1.2rem;
+    margin-bottom: 4rem;
+  }
 }
 
 .contactInfoGrid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
-    margin-bottom: 4rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-bottom: 4rem;
+  
+  @include respond-to(mobile) {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
 }
 
 .contactInfoCard {
-    background-color: $bg-info-card;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.3s ease;
+  background-color: $bg-white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid $border-light;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  }
+
+  .contactIcon {
+    font-size: 3rem;
+    color: $primary-color;
+    margin-bottom: 1.5rem;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: $primary-color;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    font-size: 0.95rem;
+    color: $text-dark;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+  }
+
+  .contactLink {
+    background-color: $accent-color;
+    color: $text-white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: inline-block;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 
     &:hover {
-        transform: translateY(-5px);
+      background-color: darken($accent-color, 10%);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
     }
-
-    .contactIcon {
-        font-size: 3rem;
-        color: $primary-color;
-        margin-bottom: 1rem;
-    }
-
-    h3 {
-        font-size: 1.5rem;
-        color: $text-dark;
-        margin-bottom: 0.8rem;
-    }
-
-    p {
-        font-size: 0.95rem;
-        color: $text-light;
-        margin-bottom: 1.2rem;
-    }
-
-    .contactLink {
-        display: inline-block;
-        background-color: $accent-color; // Using accent color for contact links
-        color: $text-white;
-        padding: 0.6rem 1.5rem;
-        border-radius: 25px;
-        text-decoration: none;
-        font-weight: 600;
-        transition: background-color 0.3s ease, transform 0.2s ease;
-
-        &:hover {
-            background-color: darken($accent-color, 10%);
-            transform: translateY(-2px);
-        }
-    }
+  }
 }
 
-/* --- Contact Form Section --- */
 .contactFormSection {
-    background-color: $bg-white;
-    padding: 3rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-    border: 1px solid $border-light;
-    text-align: left;
+  background-color: $bg-white;
+  padding: 3rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  border: 1px solid $border-light;
 
-    h2 {
-        font-size: 2.2rem;
-        color: $text-dark;
-        margin-bottom: 2rem;
-        text-align: center;
-    }
+  @include respond-to(mobile) {
+    padding: 2rem 1.5rem;
+  }
 
-    .formGroup {
-        margin-bottom: 1.5rem;
-
-        label {
-            display: block;
-            font-size: 1rem;
-            color: $text-medium;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-        }
-
-        input[type="text"],
-        input[type="email"],
-        textarea {
-            width: 100%;
-            padding: 0.8rem 1rem;
-            font-size: 1rem;
-            border: 1px solid $border-medium;
-            border-radius: 8px;
-            box-sizing: border-box;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-
-            &:focus {
-                border-color: $primary-color;
-                box-shadow: 0 0 0 3px rgba($primary-color, 0.2);
-                outline: none;
-            }
-        }
-
-        textarea {
-            resize: vertical;
-        }
-    }
-
-    .submitBtn {
-        display: block;
-        width: 100%;
-        background-color: $primary-color;
-        color: $text-white;
-        border: none;
-        padding: 1rem 2rem;
-        font-size: 1.2rem;
-        border-radius: 8px;
-        cursor: pointer;
-        transition: background-color 0.3s ease, transform 0.2s ease;
-        margin-top: 2rem;
-
-        &:hover {
-            background-color: darken($primary-color, 10%);
-            transform: translateY(-2px);
-        }
-    }
+  h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: $primary-color;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
 }
 
-/* --- Responsive Adjustments --- */
-@include respond-to(tablet) {
-    .contactPageContent {
-        padding: 2rem;
+.contactForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+
+  label {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: $primary-color;
+    margin-bottom: 0.5rem;
+  }
+
+  input,
+  textarea {
+    padding: 0.75rem 1rem;
+    border: 1px solid $border-light;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: $ff-primary;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    background-color: $bg-lighter-grey;
+
+    &:focus {
+      outline: none;
+      border-color: $accent-color;
+      box-shadow: 0 0 0 3px rgba($accent-color, 0.1);
     }
-    .contactPageHeadline {
-        font-size: 2.2rem;
+
+    &::placeholder {
+      color: $text-medium;
     }
-    .contactPageSubheadline {
-        font-size: 1rem;
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+}
+
+.submitBtn {
+  background-color: $accent-color;
+  color: $text-white;
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease,
+    box-shadow 0.3s ease;
+  text-align: center;
+  margin-top: 1rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+
+  &:hover {
+    background-color: darken($accent-color, 10%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+// Responsive improvements
+@include respond-to(mobile) {
+  .contactPageHeadline {
+    font-size: 2rem;
+  }
+
+  .contactPageSubheadline {
+    font-size: 1rem;
+  }
+
+  .contactInfoCard {
+    padding: 1.5rem;
+    
+    h3 {
+      font-size: 1.3rem;
     }
-    .contactInfoGrid {
-        grid-template-columns: 1fr;
+    
+    .contactIcon {
+      font-size: 2.5rem;
     }
-    .contactFormSection {
-        padding: 2rem;
-    }
-    .contactFormSection h2 {
-        font-size: 1.8rem;
-    }
-    .contactForm p {
-        font-size: 1rem;
-    }
-    .submitBtn {
-        font-size: 1.1rem;
-        padding: 0.8rem 1.5rem;
-    }
+  }
 }

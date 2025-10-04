@@ -1,4 +1,4 @@
-// fe/src/Pages/ResponsibleBorrowingPage/ResponsibleBorrowingPage.scss
+// fe/src/Pages/PrivacyPolicy/PrivacyPolicy.scss
 @import "../../styles/variables.scss";
 @import "../../styles/fonts.scss";
 
@@ -23,7 +23,7 @@
   }
 }
 
-.responsible-borrowing-container {
+.legal-page-container {
   background-color: $bg-light;
   font-family: $ff-primary;
   color: $text-dark;
@@ -39,7 +39,7 @@
   max-width: $xl;
   margin: 0 auto 2rem auto;
 
-  .back-to-dashboard-link {
+  .back-to-home-link {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
@@ -62,7 +62,7 @@
   }
 }
 
-.content-card {
+.legal-content-card {
   background-color: $bg-white;
   padding: 2rem;
   border-radius: 12px;
@@ -76,11 +76,11 @@
   }
 }
 
-.main-headline {
+.legal-main-headline {
   font-size: 2.5rem;
   font-weight: 700;
   color: $primary-color;
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.5rem;
   line-height: 1.2;
   text-align: center;
 
@@ -89,25 +89,19 @@
   }
 }
 
-.intro-paragraph,
-.conclusion-paragraph {
-  font-size: 1.1rem;
-  line-height: 1.7;
-  color: $text-dark;
-  margin-bottom: 2rem;
-  text-align: justify;
-
-  @include respond-to(tablet) {
-    font-size: 1.2rem;
-  }
+.legal-last-updated {
+  text-align: center;
+  color: $text-medium;
+  font-size: 0.9rem;
+  margin-bottom: 3rem;
+  font-style: italic;
 }
 
-.benefits-section,
-.best-practices-section {
-  margin-bottom: 3rem;
+.legal-section {
+  margin-bottom: 2.5rem;
 
-  .section-headline {
-    font-size: 2rem;
+  .legal-section-headline {
+    font-size: 1.8rem;
     font-weight: 700;
     color: $primary-color;
     margin-bottom: 1rem;
@@ -115,64 +109,31 @@
     padding-bottom: 0.5rem;
 
     @include respond-to(tablet) {
-      font-size: 2.2rem;
+      font-size: 2rem;
     }
   }
 
-  .section-intro {
-    font-size: 1.1rem;
-    color: $text-medium;
-    margin-bottom: 1.5rem;
-    line-height: 1.6;
-  }
-}
-
-.ordered-list {
-  list-style: none;
-  counter-reset: item;
-  padding: 0;
-  margin: 0;
-
-  li {
-    counter-increment: item;
-    margin-bottom: 2rem;
-    padding-left: 3rem;
-    position: relative;
-
-    &::before {
-      content: counter(item);
-      position: absolute;
-      left: 0;
-      top: 0;
-      background: $accent-color;
-      color: $text-white;
-      width: 2rem;
-      height: 2rem;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 1rem;
-    }
-  }
-
-  .list-strong {
-    font-size: 1.2rem;
+  .legal-subsection-headline {
+    font-size: 1.3rem;
+    font-weight: 600;
     color: $primary-color;
-    display: block;
-    margin-bottom: 0.5rem;
+    margin: 1.5rem 0 0.5rem 0;
+
+    @include respond-to(tablet) {
+      font-size: 1.5rem;
+    }
   }
 
-  .list-paragraph {
+  .legal-paragraph {
     font-size: 1rem;
-    line-height: 1.6;
+    line-height: 1.7;
     color: $text-dark;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
+    text-align: justify;
   }
 }
 
-.unordered-list {
+.legal-list {
   list-style: none;
   padding: 0;
   margin: 1rem 0;
@@ -181,6 +142,7 @@
     margin-bottom: 0.75rem;
     padding-left: 1.5rem;
     position: relative;
+    line-height: 1.6;
 
     &::before {
       content: "•";
@@ -191,45 +153,35 @@
       font-size: 1.2rem;
     }
   }
-
-  .sub-list-strong {
-    color: $primary-color;
-    font-weight: 600;
-  }
 }
 
-.conclusion-paragraph {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: $primary-color;
-  text-align: center;
-  margin-top: 2rem;
-  padding-top: 2rem;
-  border-top: 2px solid $border-light;
+.contact-info {
+  background-color: $bg-lighter-grey;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border-left: 4px solid $accent-color;
+
+  p {
+    margin: 0.5rem 0;
+    font-size: 1rem;
+  }
 }
 
 // Responsive improvements
 @include respond-to(mobile) {
-  .content-card {
+  .legal-content-card {
     padding: 1.5rem;
   }
 
-  .main-headline {
+  .legal-main-headline {
     font-size: 2rem;
   }
 
-  .benefits-section .section-headline,
-  .best-practices-section .section-headline {
-    font-size: 1.7rem;
+  .legal-section .legal-section-headline {
+    font-size: 1.5rem;
   }
 
-  .ordered-list li {
-    padding-left: 2.5rem;
-    
-    &::before {
-      width: 1.75rem;
-      height: 1.75rem;
-      font-size: 0.9rem;
-    }
+  .legal-section .legal-subsection-headline {
+    font-size: 1.2rem;
   }
 }
